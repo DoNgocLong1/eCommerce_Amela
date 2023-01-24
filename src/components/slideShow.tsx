@@ -41,7 +41,7 @@ const NextSliderButton = styled(PrevSliderButton)`
   right: 10px;
   left: unset;
 `;
-const App: React.FC = () => (
+const SlideShow: React.FC = () => (
   <Container>
     <Carousel autoplay>
       {slideShow.map((item: string, index: number) => (
@@ -58,4 +58,4 @@ const App: React.FC = () => (
     </NextSliderButton>
   </Container>
 );
-export default App;
+export default SlideShow;

@@ -1,8 +1,7 @@
 const breakPoints = {
-  sm: "640px",
-  md: "768px",
-  lg: "1024px",
-  xl: "1280px",
+  smallComputer: "max-width:1024px",
+  tablet: "(min-width:740px) and (max-width:1024px)",
+  mobile: "(max-width:740px)",
 };
 
 export default breakPoints;
