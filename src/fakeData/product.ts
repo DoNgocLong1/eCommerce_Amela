@@ -4,8 +4,9 @@ let products: any = [
     name: "Graphic Graphic card GIGABYTE R69XTGAMING OC-16GD 16GB GDDR6",
     image: "https://anphat.com.vn/media/product/37145_9.png",
     brand: "GIGABYTE",
-    price: "51.600.000",
+    price: "2.150",
     type: "graphicCard",
+    rate: "3.0",
   },
   {
     id: "SKU: 210600463",
@@ -13,8 +14,9 @@ let products: any = [
     image:
       "https://product.hstatic.net/1000026716/product/aorus_radeon__rx_6900_xt_master_16g-09_d4a81e53df6c479e83e1f521f63790d2.png",
     brand: "GIGABYTE",
-    price: "54.100.000",
+    price: "2.250",
     type: "graphicCard",
+    rate: "3.0",
   },
   {
     id: "SKU: 210600464",
@@ -22,8 +24,9 @@ let products: any = [
     image:
       "https://product.hstatic.net/1000026716/product/aorus_radeon__rx_6900_xt_master_16g-09_d4a81e53df6c479e83e1f521f63790d2.png",
     brand: "ASUS",
-    price: "69.290.000",
+    price: "2.880",
     type: "graphicCard",
+    rate: "3.0",
   },
   {
     id: "SKU: 210600465",
@@ -31,16 +34,18 @@ let products: any = [
     image:
       "https://3dcomputer.vn/uploads/images/products/cac-man-hinh/6900/asus/rog-strix-lc-rx6900xt/h732.png",
     brand: "ASUS",
-    price: "48.190.000",
+    price: "2.007",
     type: "graphicCard",
+    rate: "3.0",
   },
   {
     id: "SKU: 210600466",
     name: "Graphic card ASUS TUF GAMING Radeon RX 6900 XT 16GB GDDR6 TUF-RX6900XT-O16G-GAMING",
     image: "https://anphat.com.vn/media/product/35882_download.png",
     brand: "ASUS",
-    price: "47.190.000",
+    price: "1.960",
     type: "graphicCard",
+    rate: "3.0",
   },
   {
     id: "NBAC0296",
@@ -52,8 +57,9 @@ let products: any = [
     RAM: "8GB DDR4 3200MHz (2 khe rời, nâng cấp tối đa 32GB)",
     hardware: "512GB PCIe NVMe SSD",
     VGA: "NVIDIA® GeForce RTX™ 3050Ti 4GB GDDR6",
-    price: "33.900.000",
+    price: "1.410",
     type: "laptop",
+    rate: "3.0",
   },
   {
     id: "NBAC0297",
@@ -65,8 +71,9 @@ let products: any = [
     RAM: "32GB DDR52 4800MHz",
     hardware: "2TB SSD2 PCIe Gen4 NVMe Raid 0",
     VGA: "GeForce RTX™ 3080",
-    price: "73.900.000",
+    price: "3.080",
     type: "laptop",
+    rate: "3.0",
   },
   {
     id: "NBAC0298",
@@ -78,8 +85,9 @@ let products: any = [
     RAM: "64GB /DDR4-3200",
     hardware: "2TB PCIe SSD",
     VGA: "GEFORCE RTX™ 3080",
-    price: "63.499.000",
+    price: "2.640",
     type: "laptop",
+    rate: "2.5",
   },
   {
     id: "NBAC0303",
@@ -91,8 +99,9 @@ let products: any = [
     RAM: "16GB (2x8GB) DDR4 3200MHz (2 khe, tối đa 32GB)",
     hardware: "512GB PCIe NVMe SED SSD",
     VGA: "NVIDIA® GeForce® RTX 3060 6GB GDDR6",
-    price: "43.990.000",
+    price: "1.830",
     type: "laptop",
+    rate: "2.5",
   },
   {
     id: "NBAC0304",
@@ -104,8 +113,9 @@ let products: any = [
     RAM: "32GB LPDDR51 5200MHz",
     hardware: "512GB PCIe NVMe SED SSD",
     VGA: "GEFORCE RTX™ 3060",
-    price: "53.490.000",
+    price: "2.228",
     type: "laptop",
+    rate: "2.5",
   },
   {
     id: "NBAC0306",
@@ -117,8 +127,9 @@ let products: any = [
     RAM: "32GB DDR51 4800MHz1",
     hardware: "512GB PCIe NVMe SED SSD",
     VGA: "NVIDIA® GEFORCE RTX™ 3070 Ti",
-    price: "63.290.000",
+    price: "2.637",
     type: "laptop",
+    rate: "2.5",
   },
   {
     id: "NBAC0305",
@@ -130,8 +141,9 @@ let products: any = [
     RAM: "32GB, 4800MHz",
     hardware: "4TB, GEN4 2X M.2 PCIe, Raid 0",
     VGA: "GEFORCE RTX™ 3080 Ti",
-    price: "73.290.000",
+    price: "3053",
     type: "laptop",
+    rate: "2.5",
   },
   {
     id: "MONI001",
@@ -139,24 +151,27 @@ let products: any = [
     image:
       "https://www.bachkhoashop.com/images/202201/thumb_img/4652-gthumb-26033-38916_21c1_joe_encore3_m22f_jetblack_coreset_front.png",
     brand: "ASUS",
-    price: "5.489.000",
+    price: "289.000",
     type: "monitor",
+    rate: "2.5",
   },
   {
     id: "MONI002",
     name: "Monitor LCD MSI PRO MP241X (1920 x 1080/VA/75Hz/8 ms)",
     image: "https://anphat.com.vn/media/product/41161_picture1.png",
     brand: "ASUS",
-    price: "2.790.000",
+    price: "228",
     type: "monitor",
+    rate: "2.5",
   },
   {
     id: "MONI003",
     name: "Monitor LCD ACER EK241Y (1920 x 1080/IPS/75Hz/4 ms)",
     image: "https://mega.com.vn/media/product/14681_lcd_acer_ed242qr_4.png",
     brand: "ASUS",
-    price: "2.990.000",
+    price: "124",
     type: "monitor",
+    rate: "2.5",
   },
   {
     id: "MONI004",
@@ -164,8 +179,9 @@ let products: any = [
     image:
       "https://anphat.com.vn/media/product/35100_product_0_20200305110940_5e606d74297d6.png",
     brand: "ASUS",
-    price: "5.690.000",
+    price: "237",
     type: "monitor",
+    rate: "2.5",
   },
   {
     id: "MONI005",
@@ -173,23 +189,174 @@ let products: any = [
     image:
       "https://product.hstatic.net/200000151849/product/lg_27qn600-b_04a2a9ef671a4bdba759cae51dd585de_large.png",
     brand: "ASUS",
-    price: "6.990.000",
+    price: "290",
     type: "monitor",
+    rate: "2.5",
   },
   {
     id: "MONI006",
     name: "Monitor LCD ViewSonic 21.5 inch VA2215-H (1920x1080, VA, 75Hz, 5ms)",
     image:
       "https://cdn.vatgia.vn/pictures/thumb/320x320/2017/11/uib1511582563.png",
-    subImage1:
+    subImage: [
       "https://lh3.googleusercontent.com/nEgULh94OjHjGo8U_Ykl1FEEhvcodAWbmyxsb1X1memNMHu0ct6OQsyfz8xoCz7wv3jEQnCZ1RBG7R_SL_Kbb5sD3ErRBnGZ=rw",
-    subImage2:
       "https://lh3.googleusercontent.com/i0kjCctGsOPFQZjidhV1Y5Cg_z2NnXYUnRdRnZmgNune9kuzm6OtqYF8ktBKwg21Wm9S6vKXK7U2NoKNyOJHmhxU4R9ppbIJ=w500-rw",
-    subImage3:
       "https://lh3.googleusercontent.com/Rv8puz36M3KW6LtwK5mmacFr9d8nHxK_JZBUyIyUnlY6OpCu4AHcRPBnlWFl_tqRkvNLGSjBTxQwx9nexTpKHYnL6ccAyu4=w500-rw",
+    ],
     brand: "ASUS",
-    price: "4.090.000",
+    price: "170",
     type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI007",
+    name: "Monitor Predator CG7",
+    image:
+      "https://images.acer.com/is/image/acer/CG7_CG437KP_wp-01-3?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "310",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI008",
+    name: "Monitor Predator X25",
+    image:
+      "https://images.acer.com/is/image/acer/X_X25_wp-01-1?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "280",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI009",
+    name: "Monitor Predator X28",
+    image:
+      "https://images.acer.com/is/image/acer/X_X28_wp-01-16?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "320",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI010",
+    name: "Monitor Predator X34",
+    image:
+      "https://images.acer.com/is/image/acer/X_X34_wp-01-4?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "350",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI011",
+    name: "Monitor Predator XB1",
+    image:
+      "https://images.acer.com/is/image/acer/XB1_XB271HK_wp_01-1?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "300",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI012",
+    name: "Monitor Predator XB3",
+    image:
+      "https://images.acer.com/is/image/acer/XB3_XB273U-GS_wp-01-1?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "330",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "MONI013",
+    name: "Monitor Predator XB3 Visioncare",
+    image:
+      "https://images.acer.com/is/image/acer/XB3_XB273UN-V_wp-01-1?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "350",
+    type: "monitor",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES001",
+    name: "Predator Glea 311",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Galea-311-PHW910-03?$Product-Cards-XL$",
+    brand: "ASUS",
+    price: "80",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES002",
+    name: "Predator Glea 350",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Galea-350-PHW920-03?$Product-Cards-XL$",
+    brand: "ASUS",
+    price: "100",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES003",
+    name: "Predator Glea 310",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Galea-310-PHW800-03?$Product-Cards-XL$",
+    brand: "ASUS",
+    price: "80",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES004",
+    name: "Predator cestus 330",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Cestus-330-PMW920-01?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "40",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES005",
+    name: "Predator cestus 335",
+    image:
+      "https://images.acer.com/is/image/acer/Predator_Cestus_335_01?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "45",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES006",
+    name: "Predator Connect X5 5G CPE",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Connect-X5-5G-CPE-02?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "35",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "ACCES007",
+    name: "Predator Connect D5 5G Dongle",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Connect-D5-5G-Dongle-04-2?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "30",
+    type: "accessory",
+    rate: "2.5",
+  },
+  {
+    id: "DESK001",
+    name: "Pradator Orion 3000",
+    image:
+      "https://images.acer.com/is/image/acer/Predator-Connect-D5-5G-Dongle-04-2?$Series-Component-XL$",
+    brand: "ASUS",
+    price: "1005",
+    type: "accessory",
+    rate: "2.5",
   },
 ];
 export default products;

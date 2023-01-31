@@ -3,9 +3,10 @@ import { Carousel } from "antd";
 import styled from "styled-components";
 import { slideShow } from "assets/images";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import color from "utils/color";
 const contentStyle: React.CSSProperties = {
   width: "100%",
-  color: "#fff",
+  color: "${color.whiteColor}",
   lineHeight: "160px",
   textAlign: "center",
   background: "#364d79",
@@ -28,7 +29,7 @@ const PrevSliderButton = styled.button`
   transform: translateY(-50%);
   left: 10px;
   padding: 1em 0.5em;
-  color: #fff;
+  color: ${color.whiteColor};
   outline: none;
   border: none;
   transition: 0.5s ease;
@@ -46,7 +47,7 @@ const SlideShow: React.FC = () => (
     <Carousel autoplay>
       {slideShow.map((item: string, index: number) => (
         <div key={index}>
-          <img style={contentStyle} src={item} />
+          <img style={contentStyle} src={item} alt={"slide show"} />
         </div>
       ))}
     </Carousel>

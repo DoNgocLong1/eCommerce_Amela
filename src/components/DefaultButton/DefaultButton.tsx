@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import color from "utils/color";
 const Button = styled.button`
   background-color: initial;
-  border: 0.3em solid #fff;
+  border: 0.3em solid ${color.whiteColor};
   border-radius: 0.5em;
-  color: #fff;
+  color: ${color.whiteColor};
   font-size: 1.5em;
   font-weight: 700;
   padding: 1em 2em;

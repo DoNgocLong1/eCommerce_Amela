@@ -10,7 +10,7 @@ export const Container = styled.nav`
   justify-content: space-between;
   align-items: center;
   z-index: 99;
-  background-color: ${color.primaryColor};
+  background-color: ${color.headerColor};
 `;
 export const Logo = styled.img`
   width: 14em;
@@ -22,10 +22,17 @@ export const FeatureWrapper = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${color.whiteColor};
   font-size: 1.5em;
-  gap: 1em;
+  gap: 1.3em;
 `;
 export const Feature = styled.li`
   display: flex;
+  gap: 0.3em;
+  cursor: pointer;
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

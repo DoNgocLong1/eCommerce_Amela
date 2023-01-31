@@ -1,3 +1,4 @@
+import color from "utils/color";
 import styled from "styled-components";
 import images from "assets/images";
 export const Container = styled.div`
@@ -16,7 +17,7 @@ export const RegistryWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 4em 2.5em;
-  background-color: #fff;
+  background-color: ${color.whiteColor};
   border-radius: 2.5em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   .ant-input-affix-wrapper {

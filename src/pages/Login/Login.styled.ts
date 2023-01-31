@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import images from "assets/images";
 import { Link } from "react-router-dom";
+import color from "utils/color";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -17,7 +18,7 @@ export const LoginWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 4em 2.5em;
-  background-color: #fff;
+  background-color: ${color.whiteColor};
   border-radius: 2.5em;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   .ant-input-affix-wrapper {
