@@ -1,3 +1,4 @@
+import Footer from "components/Footer/Footer";
 import Header from "components/Header/Header";
 import React from "react";
 import { Container } from "./DefaultLayout.styled";
@@ -9,6 +10,7 @@ const DefaultLayout = ({ children }: IDefaultLayout) => {
     <Container>
       <Header />
       {children}
+      <Footer />
     </Container>
   );
 };

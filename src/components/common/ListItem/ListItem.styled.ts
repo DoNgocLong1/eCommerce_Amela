@@ -110,7 +110,7 @@ export const AddButton = styled.button`
   border: 0.1em solid ${color.whiteColor};
   border-radius: 0.5em;
   color: ${color.whiteColor};
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: 700;
   padding: 0.5em;
   transition: all 0.2s linear;

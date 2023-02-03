@@ -10,9 +10,20 @@ import laptopCategory from "./images/laptop_Category.jpg";
 import desktopCategory from "./images/desktop_Category.jpg";
 import monitorCategory from "./images/monitor_Category.jpg";
 import projectorCategory from "./images/projector_Category.jpg";
-import gamingChairCategory from "./images/gamingChair_Category.jpg";
+import graphicCardCategory from "./images/graphicCardCategory.png";
 import accessoryCategory from "./images/accessory_Category.jpg";
 import logo from "./images/logo.png";
+import laptopBanner from "./images/laptopBanner.png";
+import monitorBanner from "./images/monitorBanner.png";
+import accessoryBanner from "./images/accessoryBanner.png";
+import conceptdBrand from "./images/conceptdBrand.png";
+import predatorBrand from "./images/predatorBrand.png";
+import spatialLabsBrand from "./images/spatialLabsBrand.png";
+import planet9Brand from "./images/planet9Brand.png";
+import googlePlayPaymnet from "./images/googlePlayPaymnet.avif";
+import appStorePaymnet from "./images/appStorePaymnet.avif";
+import cardPayment from "./images/cardPayment.avif";
+import productBanner from "./images/productBanner.jpg";
 const images = {
   loginImage,
   loginBackground,
@@ -27,8 +38,18 @@ const images = {
   desktopCategory,
   monitorCategory,
   projectorCategory,
-  gamingChairCategory,
   accessoryCategory,
+  laptopBanner,
+  monitorBanner,
+  accessoryBanner,
+  conceptdBrand,
+  predatorBrand,
+  spatialLabsBrand,
+  planet9Brand,
+  googlePlayPaymnet,
+  appStorePaymnet,
+  cardPayment,
+  productBanner,
 };
 export const slideShow = [
   slideShow1,
@@ -47,7 +68,7 @@ export const categories: Icategories[] = [
   { name: "Desktops", image: desktopCategory },
   { name: "Monitors", image: monitorCategory },
   { name: "Projectors", image: projectorCategory },
-  { name: "Gaming chairs", image: gamingChairCategory },
+  { name: "Graphic Cards", image: graphicCardCategory },
   { name: "Accessories", image: accessoryCategory },
 ];
 export default images;

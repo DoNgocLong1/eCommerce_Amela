@@ -4,39 +4,32 @@ import { Container, RegistryWrapper, RegistryTitle } from "./Registry.styled";
 /* import * as searchService from "apiServices/searchService"; */
 import { UserOutlined } from "@ant-design/icons";
 import { LockOutlined } from "@ant-design/icons/lib/icons";
-import axios from "axios";
-const url = "http://54.179.60.253/api/register";
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-  const registryData = {
-    name: values.fullname,
-    email: values.username,
-    password: values.password,
-    c_password: values.retype_password,
-  };
-  console.log(registryData);
-  axios
-    .post(url, registryData)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
-
+import { useNavigate } from "react-router-dom";
+import { instance } from "apiServices/instance";
 const Registry = () => {
-  /* useEffect(() => {
-    const fetchApi = async () => {
-      const result = await searchService.search("le");
-      console.log(result);
+  const navigate = useNavigate();
+  const onFinish = async (values: any) => {
+    const registryData = {
+      name: values.fullname,
+      email: values.username,
+      password: values.password,
+      c_password: values.retype_password,
     };
-    fetchApi();
-  }, []); */
+    console.log(registryData);
+    await instance
+      .post("register", registryData)
+      .then((res) => {
+        localStorage.setItem("token", res.data.data.data.token);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <Container>
       <RegistryWrapper>

@@ -146,16 +146,6 @@ let products: any = [
     rate: "2.5",
   },
   {
-    id: "MONI001",
-    name: "Monitor LCD Samsung 23.8 inch LS24R350FHEXXV",
-    image:
-      "https://www.bachkhoashop.com/images/202201/thumb_img/4652-gthumb-26033-38916_21c1_joe_encore3_m22f_jetblack_coreset_front.png",
-    brand: "ASUS",
-    price: "289.000",
-    type: "monitor",
-    rate: "2.5",
-  },
-  {
     id: "MONI002",
     name: "Monitor LCD MSI PRO MP241X (1920 x 1080/VA/75Hz/8 ms)",
     image: "https://anphat.com.vn/media/product/41161_picture1.png",
@@ -190,21 +180,6 @@ let products: any = [
       "https://product.hstatic.net/200000151849/product/lg_27qn600-b_04a2a9ef671a4bdba759cae51dd585de_large.png",
     brand: "ASUS",
     price: "290",
-    type: "monitor",
-    rate: "2.5",
-  },
-  {
-    id: "MONI006",
-    name: "Monitor LCD ViewSonic 21.5 inch VA2215-H (1920x1080, VA, 75Hz, 5ms)",
-    image:
-      "https://cdn.vatgia.vn/pictures/thumb/320x320/2017/11/uib1511582563.png",
-    subImage: [
-      "https://lh3.googleusercontent.com/nEgULh94OjHjGo8U_Ykl1FEEhvcodAWbmyxsb1X1memNMHu0ct6OQsyfz8xoCz7wv3jEQnCZ1RBG7R_SL_Kbb5sD3ErRBnGZ=rw",
-      "https://lh3.googleusercontent.com/i0kjCctGsOPFQZjidhV1Y5Cg_z2NnXYUnRdRnZmgNune9kuzm6OtqYF8ktBKwg21Wm9S6vKXK7U2NoKNyOJHmhxU4R9ppbIJ=w500-rw",
-      "https://lh3.googleusercontent.com/Rv8puz36M3KW6LtwK5mmacFr9d8nHxK_JZBUyIyUnlY6OpCu4AHcRPBnlWFl_tqRkvNLGSjBTxQwx9nexTpKHYnL6ccAyu4=w500-rw",
-    ],
-    brand: "ASUS",
-    price: "170",
     type: "monitor",
     rate: "2.5",
   },

@@ -1,7 +1,12 @@
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
+import { addItem, selectCartList } from "features/cart/cartSlice";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { CartItemType } from "types/cartType.type";
+import { IProductItem } from "types/productType.type";
+import Notification from "../Notification/Notification";
 import {
   AddButton,
   Container,
@@ -20,11 +25,24 @@ import {
   RateWrapper,
 } from "./ListItem.styled";
 interface IListItem {
-  data?: any[];
+  data?: IProductItem[];
   ItemPerRow?: number;
   ItemPerRowOnMobile?: number;
 }
 const ListItem = ({ data, ItemPerRow }: IListItem) => {
+  const state = useSelector(selectCartList);
+  const dispatch = useDispatch();
+  console.log(state);
+  const handleAddItem = (payload: IProductItem): void => {
+    const payloadData: CartItemType = {
+      id: payload.id,
+      img: payload.image,
+      name: payload.name,
+      price: +payload.price,
+    };
+    console.log(payload);
+    dispatch(addItem(payloadData));
+  };
   return (
     <Container>
       <ListItemWrapper ItemPerRow={ItemPerRow}>
@@ -51,9 +69,15 @@ const ListItem = ({ data, ItemPerRow }: IListItem) => {
             </RateWrapper>
             <ItemBottom>
               <ItemPrice>{item.price} $</ItemPrice>
-              <AddButton>
-                <ShoppingCartOutlined /> Add
-              </AddButton>
+              <Notification
+                button={
+                  <AddButton onClick={() => handleAddItem(item)}>
+                    <ShoppingCartOutlined /> Add
+                  </AddButton>
+                }
+                messageType={"successful"}
+                messageContent={"add to cart"}
+              />
             </ItemBottom>
           </ItemWrapper>
         ))}

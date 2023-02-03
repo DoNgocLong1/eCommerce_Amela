@@ -100,6 +100,8 @@ export const BrowserCategoriesTitle = styled.h1`
 `;
 export const CategoriesWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   width: 100%;
   padding: 3.2em 2em 0 2em;
@@ -120,6 +122,7 @@ export const CategoryTitle = styled.span`
 export const CategoryItemImg = styled.img`
   transition: 0.3s ease;
   width: 100%;
+  color: ${color.whiteColor};
   @media ${breakPoints.mobile} {
     width: 25em;
   }

@@ -1,4 +1,4 @@
-/* import React, { useEffect } from "react"; */
+import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import {
   Container,
@@ -8,70 +8,44 @@ import {
   ForgotPassword,
   Registry,
 } from "./Login.styled";
-/* import * as searchService from "apiServices/searchService"; */
 import { UserOutlined } from "@ant-design/icons";
 import { LockOutlined } from "@ant-design/icons/lib/icons";
-/* import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { loginSuccess, selectAuth } from "features/auth/authSlice";
-import userData from "fakeData/data"; */
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux/es/exports";
+import { loginSuccess } from "features/auth/authSlice";
+import { instance } from "apiServices/instance";
 const Login = () => {
-  /* const navigate = useNavigate();
-  const dispatch = useDispatch(); */
-  const loginUrl = "http://ecommerce.fresher.ameladev.click/api/login";
-  const onFinish = (values: any) => {
-    const instance = axios.create({
-      baseURL: loginUrl,
-      timeout: 1000,
-      headers: {
-        "X-CSRF-TOKEN": document
-          .querySelector('meta[name="csrf-token"]')
-          ?.getAttribute("content"),
-      },
-    });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const onFinish = async (values: any) => {
     const loginData: any = {
       email: values.username,
       password: values.password,
     };
-    instance
-      .post(loginUrl, loginData)
-      .then(function (response) {
-        console.log(response);
+    await instance
+      .post("login", loginData)
+      .then((res) => {
+        if (!res.data.data) {
+          console.log("login failed");
+        }
+        console.log(res.data.data.data.token);
+        localStorage.setItem("token", res.data.data.data.token);
+        dispatch(loginSuccess(res.data.data));
+        navigate("/");
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
-    /* const findUser: any = userData.find(
-      (user) =>
-        user.email === values.username && user.password === values.password
-    );
-    if (!findUser) {
-      return;
-    }
-    dispatch(loginSuccess(findUser));
-    console.log(findUser);
-    navigate("/home"); */
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
-  /*  useEffect(() => {
-    const fetchApi = async () => {
-      const result = await searchService.search("le");
-      console.log(result);
-    };
-    fetchApi();
-  }, []); */
   return (
     <Container>
       <LoginWrapper>
         <LoginTitle>Welcome to Predator</LoginTitle>
         <Form
           name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}

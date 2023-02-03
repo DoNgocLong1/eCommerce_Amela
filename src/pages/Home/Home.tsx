@@ -1,4 +1,4 @@
-import { categories } from "assets/images";
+import images from "assets/images";
 import ListItem from "components/common/ListItem/ListItem";
 import Slideshow from "components/SlideShow";
 import React from "react";
@@ -25,16 +25,37 @@ import {
 } from "./Home.styled";
 import products from "fakeData/product";
 import { ArrowRightOutlined } from "@ant-design/icons";
+import { instance } from "apiServices/instance";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { IdataCategory } from "types/productType.type";
 const Home = () => {
+  const fetchCategory = async () => {
+    const data = await instance
+      .get("categories")
+      .then((response) => response)
+      .catch((error) => {
+        console.log(error);
+      });
+    return data;
+  };
+  console.log(fetchCategory());
+  const { data } = useQuery({
+    queryKey: ["listCategory"],
+    queryFn: fetchCategory,
+  });
+  const dataCategory: IdataCategory[] = data?.data.data.data;
   return (
     <Container>
       <Slideshow />
       <BannerWrapper>
         <Banner>
-          <ShopNowButton>
-            Shop now <ArrowRightOutlined />
-          </ShopNowButton>
-          <BannerImg src="https://static.acer.com/up/Resource/Acer/Predator_Minisite/Home/Highlights/20210618/Helios-500.png" />
+          <Link to="/product">
+            <ShopNowButton>
+              Shop now <ArrowRightOutlined />
+            </ShopNowButton>
+          </Link>
+          <BannerImg src={images.laptopBanner} />
           <BannerDescription>
             <BannerTitle>Laptops</BannerTitle>
             <BannerContent>
@@ -44,10 +65,12 @@ const Home = () => {
           </BannerDescription>
         </Banner>
         <Banner>
-          <ShopNowButton>
-            Shop now <ArrowRightOutlined />
-          </ShopNowButton>
-          <BannerImg src="https://static.acer.com/up/Resource/Acer/Predator_Minisite/Home/Highlights/20210617/X38.png" />
+          <Link to="/product">
+            <ShopNowButton>
+              Shop now <ArrowRightOutlined />
+            </ShopNowButton>
+          </Link>
+          <BannerImg src={images.monitorBanner} />
           <BannerDescription>
             <BannerTitle>Monitors</BannerTitle>
             <BannerContent>
@@ -57,10 +80,12 @@ const Home = () => {
           </BannerDescription>
         </Banner>
         <Banner>
-          <ShopNowButton>
-            Shop now <ArrowRightOutlined />
-          </ShopNowButton>
-          <BannerImg src="https://static.acer.com/up/Resource/Acer/Predator_Minisite/Home/Highlights/20210617/Aethon-301-TKL.png" />
+          <Link to="/product">
+            <ShopNowButton>
+              Shop now <ArrowRightOutlined />
+            </ShopNowButton>
+          </Link>
+          <BannerImg src={images.accessoryBanner} />
           <BannerDescription>
             <BannerTitle>Accessory</BannerTitle>
             <BannerContent>
@@ -73,11 +98,11 @@ const Home = () => {
       <BrowserCategories>
         <BrowserCategoriesTitle>Browser categories</BrowserCategoriesTitle>
         <CategoriesWrapper>
-          {categories.map((item, index) => (
+          {dataCategory?.map((item: IdataCategory, index: number) => (
             <CategoryItem key={index}>
               <CategoryTitle>{item.name}</CategoryTitle>
               <CategoryItemImgWrapper>
-                <CategoryItemImg src={item.image} alt={item.name} />
+                <CategoryItemImg src={item.category_img} alt={item.name} />
               </CategoryItemImgWrapper>
             </CategoryItem>
           ))}
