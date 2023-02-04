@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectCartList } from "features/cart/cartSlice";
 import {
@@ -21,14 +21,8 @@ import { instance } from "apiServices/instance";
 import { IdataCategory } from "types/productType.type";
 import { useQuery } from "react-query";
 import images from "assets/images";
-import { Pagination, PaginationProps } from "antd";
+import Navigation from "components/common/Navigation/Navigation";
 const Product = () => {
-  const [current, setCurrent] = useState(3);
-
-  const onChange: PaginationProps["onChange"] = (page) => {
-    console.log(page);
-    setCurrent(page);
-  };
   const fetchCategory = async () => {
     const data = await instance
       .get("categories")
@@ -75,7 +69,7 @@ const Product = () => {
           <ListItem data={list} ItemPerRow={5} ItemPerRowOnMobile={2} />
         </ListProductContainer>
       </ProductContainer>
-      <Pagination current={current} onChange={onChange} total={50} />
+      <Navigation />
     </Container>
   );
 };

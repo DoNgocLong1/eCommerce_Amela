@@ -31,7 +31,8 @@ export const FeatureWrapper = styled.ul`
 export const Feature = styled.li`
   position: relative;
   display: flex;
-  gap: 0.3em;
+  align-items: center;
+  gap: 0.7em;
   cursor: pointer;
   span {
     display: flex;
@@ -39,7 +40,23 @@ export const Feature = styled.li`
     align-items: center;
   }
 `;
+export const IconWrapper = styled.div`
+  font-size: 1.8em;
+`;
 export const FeatureLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+`;
+export const QuantitySpan = styled.div`
+  position: absolute;
+  background-color: red;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  top: -0.5em;
+  left: 1em;
+`;
+export const Quantity = styled.span`
+  color: ${color.whiteColor};
+  font-size: 0.8em;
 `;

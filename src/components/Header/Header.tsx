@@ -6,14 +6,19 @@ import {
 import { instance } from "apiServices/instance";
 import images from "assets/images";
 import PropDown from "components/common/PropDown/PropDown";
+import { selectCartList } from "features/cart/cartSlice";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Container,
   Feature,
   FeatureLink,
   FeatureWrapper,
+  IconWrapper,
   Logo,
+  Quantity,
+  QuantitySpan,
 } from "./Header.styled";
 const Logout = () => {
   const handleLogout = async () => {
@@ -40,6 +45,7 @@ const Logout = () => {
   );
 };
 const Header = () => {
+  const { listLength } = useSelector(selectCartList);
   const [show, setShow] = useState<boolean>(false);
   const token = localStorage.getItem("token");
   console.log(token);
@@ -50,7 +56,9 @@ const Header = () => {
       </Link>
       <FeatureWrapper>
         <Feature>
-          <HeartOutlined />
+          <IconWrapper>
+            <HeartOutlined />
+          </IconWrapper>
           Wishlist
         </Feature>
         <Feature
@@ -58,8 +66,13 @@ const Header = () => {
             setShow((prev) => (prev ? false : true));
           }}
         >
-          <ShoppingCartOutlined />
+          <IconWrapper>
+            <ShoppingCartOutlined />
+          </IconWrapper>
           Cart
+          <QuantitySpan>
+            <Quantity>{listLength}</Quantity>
+          </QuantitySpan>
           <PropDown isShow={show} />
         </Feature>
         {token ? (
@@ -67,7 +80,9 @@ const Header = () => {
         ) : (
           <FeatureLink to="/login">
             <Feature>
-              <UserOutlined />
+              <IconWrapper>
+                <UserOutlined />
+              </IconWrapper>
               Login
             </Feature>
           </FeatureLink>

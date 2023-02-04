@@ -7,47 +7,6 @@ export const Container = styled.div`
   padding-bottom: 2em;
   flex-direction: column;
   color: ${color.whiteColor};
-  .ant-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .ant-pagination-item,
-  .ant-pagination-item-link {
-    border: 1px solid ${color.whiteColor} !important;
-    padding: 0.5em 0.7em !important;
-    height: 100% !important;
-    transition: 0.25s ease !important;
-    a {
-      color: ${color.whiteColor};
-    }
-    :hover a {
-      color: #000;
-      font-weight: bold;
-    }
-    :hover {
-      color: #000;
-      background-color: ${color.whiteColor} !important;
-    }
-  }
-  .ant-pagination li {
-    height: 100%;
-  }
-  .ant-pagination-item-link {
-    padding: 1em 1.3em !important;
-    :hover span {
-      color: #000;
-      font-weight: bold;
-    }
-    span {
-      color: ${color.whiteColor};
-      font-size: 1.2em;
-    }
-  }
-  .ant-pagination-item-active a {
-    color: #000;
-    font-weight: bold;
-  }
 `;
 export const BannerWrapper = styled.div`
   height: 40em;

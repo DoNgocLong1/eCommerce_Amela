@@ -7,6 +7,11 @@ import {
   ItemDetailPrice,
   ItemDetailQuantity,
   ItemDetailWrapper,
+  ItemFooter,
+  ItemFooterButton,
+  ItemFooterContent,
+  ItemFooterTitle,
+  ItemFooterWrapper,
   ItemImg,
   PropDownItemWrapper,
   PropDownListItemWrapper,
@@ -16,7 +21,7 @@ interface IPropDown {
   isShow: boolean;
 }
 const PropDown = ({ isShow }: IPropDown) => {
-  const { cartList } = useSelector(selectCartList);
+  const { cartList, totalPrice } = useSelector(selectCartList);
   return (
     <Container isShow={isShow}>
       <PropDownTitle>Your cart</PropDownTitle>
@@ -32,6 +37,13 @@ const PropDown = ({ isShow }: IPropDown) => {
           </PropDownItemWrapper>
         ))}
       </PropDownListItemWrapper>
+      <ItemFooter>
+        <ItemFooterWrapper>
+          <ItemFooterTitle>Total: </ItemFooterTitle>
+          <ItemFooterContent> {totalPrice}$</ItemFooterContent>
+        </ItemFooterWrapper>
+        <ItemFooterButton>Check out</ItemFooterButton>
+      </ItemFooter>
     </Container>
   );
 };
