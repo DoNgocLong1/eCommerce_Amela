@@ -1,6 +1,11 @@
 import React /* { useEffect } */ from "react";
 import { Button, Form, Input } from "antd";
-import { Container, RegistryWrapper, RegistryTitle } from "./Registry.styled";
+import {
+  Container,
+  RegistryWrapper,
+  RegistryTitle,
+  ButtonWrapper,
+} from "./Registry.styled";
 /* import * as searchService from "apiServices/searchService"; */
 import { UserOutlined } from "@ant-design/icons";
 import { LockOutlined } from "@ant-design/icons/lib/icons";
@@ -74,11 +79,11 @@ const Registry = () => {
               placeholder="Retype password"
             />
           </Form.Item>
-          <Form.Item name="submit" wrapperCol={{ offset: 8, span: 16 }}>
+          <ButtonWrapper name="submit" wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-          </Form.Item>
+          </ButtonWrapper>
         </Form>
       </RegistryWrapper>
     </Container>

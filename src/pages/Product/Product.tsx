@@ -16,34 +16,54 @@ import {
   Title,
 } from "./Product.styled";
 import ListItem from "components/common/ListItem/ListItem";
-import products from "fakeData/product";
 import { instance } from "apiServices/instance";
-import { IdataCategory } from "types/productType.type";
+import { IdataCategory, IProductItem } from "types/productType.type";
 import { useQuery } from "react-query";
 import images from "assets/images";
 import Navigation from "components/common/Navigation/Navigation";
+import { filter } from "apiServices/productService";
+import {
+  useNavigate,
+  createSearchParams,
+  useSearchParams,
+} from "react-router-dom";
 const Product = () => {
   const fetchCategory = async () => {
     const data = await instance
       .get("categories")
       .then((response) => response)
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => error);
     return data;
   };
-  console.log(fetchCategory());
-  const { data } = useQuery({
+  const categoryQuery = useQuery({
     queryKey: ["listCategory"],
     queryFn: fetchCategory,
   });
-  const dataCategory: IdataCategory[] = data?.data.data.data;
+  const dataCategory: IdataCategory[] = categoryQuery.data?.data.data.data;
+  console.log(dataCategory);
   const state = useSelector(selectCartList);
   console.log(state);
-  const list = products.slice(0, 9);
   const handleFilter = (tag: string): void => {
     console.log(tag);
   };
+  const [searchParams] = useSearchParams();
+  console.log(searchParams);
+  const params = Object.fromEntries([...searchParams]);
+  console.log(params.filter_time);
+  const productQuery = useQuery({
+    queryKey: ["product", params],
+    queryFn: () => filter(params.filter_time),
+  });
+  const navigate = useNavigate();
+  const onSort = (params: string) => {
+    navigate({
+      pathname: "/product",
+      search: createSearchParams({
+        filter_time: String(params),
+      }).toString(),
+    });
+  };
+  const productData: IProductItem[] = productQuery.data?.data.data;
   return (
     <Container>
       <BannerWrapper>
@@ -63,10 +83,12 @@ const Product = () => {
                 <CategoryName>{item.name}</CategoryName>
               </CategoryWrapper>
             ))}
+            <button onClick={() => onSort("newest")}>newest</button>
+            <button onClick={() => onSort("oldest")}>oldest</button>
           </CategoriesContainer>
         </SideBar>
         <ListProductContainer>
-          <ListItem data={list} ItemPerRow={5} ItemPerRowOnMobile={2} />
+          <ListItem data={productData} ItemPerRow={5} ItemPerRowOnMobile={2} />
         </ListProductContainer>
       </ProductContainer>
       <Navigation />

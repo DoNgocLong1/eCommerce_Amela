@@ -7,6 +7,7 @@ import {
   LoginFeatureLogin,
   ForgotPassword,
   Registry,
+  ButtonWrapper,
 } from "./Login.styled";
 import { UserOutlined } from "@ant-design/icons";
 import { LockOutlined } from "@ant-design/icons/lib/icons";
@@ -70,11 +71,11 @@ const Login = () => {
             <ForgotPassword>Forgot password</ForgotPassword>
             <Registry to="/registry">Registry</Registry>
           </LoginFeatureLogin>
-          <Form.Item name="submit" wrapperCol={{ offset: 8, span: 16 }}>
+          <ButtonWrapper name="submit" wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-          </Form.Item>
+          </ButtonWrapper>
         </Form>
       </LoginWrapper>
     </Container>

@@ -1,6 +1,8 @@
+import { instance } from "apiServices/instance";
 import { selectCartList } from "features/cart/cartSlice";
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Container,
   ItemDetailName,
@@ -22,6 +24,34 @@ interface IPropDown {
 }
 const PropDown = ({ isShow }: IPropDown) => {
   const { cartList, totalPrice } = useSelector(selectCartList);
+  let orderList: any = [];
+  for (const item of cartList) {
+    const params = {
+      product_id: item.id,
+      quantity: item.count,
+    };
+    orderList = [...orderList, params];
+  }
+  const onOrder = async () => {
+    const params: any = {
+      user_id: 1,
+      amount: totalPrice,
+      obj: orderList,
+    };
+    const config = {
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    };
+    await instance
+      .post("order", JSON.stringify(params), config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <Container isShow={isShow}>
       <PropDownTitle>Your cart</PropDownTitle>
@@ -42,7 +72,9 @@ const PropDown = ({ isShow }: IPropDown) => {
           <ItemFooterTitle>Total: </ItemFooterTitle>
           <ItemFooterContent> {totalPrice}$</ItemFooterContent>
         </ItemFooterWrapper>
-        <ItemFooterButton>Check out</ItemFooterButton>
+        <Link to="/cart">
+          <ItemFooterButton onClick={onOrder}>View cart</ItemFooterButton>
+        </Link>
       </ItemFooter>
     </Container>
   );

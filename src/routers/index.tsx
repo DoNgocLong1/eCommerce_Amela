@@ -8,6 +8,8 @@ import Home from "pages/Home/Home";
 import DefaultLayout from "Layout/DefaultLayout/DefaultLayout";
 import Registry from "pages/Registry/Registry";
 import Product from "pages/Product/Product";
+import ProductDetail from "pages/ProductDetail/ProductDetail";
+import Cart from "pages/Cart/Cart";
 const Routers = () => {
   const state = useSelector(selectAuth);
   console.log("auth state", state);
@@ -38,6 +40,22 @@ const Routers = () => {
       element: (
         <DefaultLayout>
           <Product />
+        </DefaultLayout>
+      ),
+    },
+    {
+      path: "/product/detail",
+      element: (
+        <DefaultLayout>
+          <ProductDetail />
+        </DefaultLayout>
+      ),
+    },
+    {
+      path: "/cart",
+      element: (
+        <DefaultLayout>
+          <Cart />
         </DefaultLayout>
       ),
     },

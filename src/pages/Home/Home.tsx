@@ -23,12 +23,13 @@ import {
   PopularProductWrapper,
   ShopNowButton,
 } from "./Home.styled";
-import products from "fakeData/product";
+/* import products from "fakeData/product"; */
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { instance } from "apiServices/instance";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { IdataCategory } from "types/productType.type";
+import { IdataCategory, IProductItem } from "types/productType.type";
+import { fetchProduct } from "apiServices/productService";
 const Home = () => {
   const fetchCategory = async () => {
     const data = await instance
@@ -40,11 +41,16 @@ const Home = () => {
     return data;
   };
   console.log(fetchCategory());
-  const { data } = useQuery({
+  const categoryQuery = useQuery({
     queryKey: ["listCategory"],
     queryFn: fetchCategory,
   });
-  const dataCategory: IdataCategory[] = data?.data.data.data;
+  const productQuery = useQuery({
+    queryKey: ["product"],
+    queryFn: fetchProduct,
+  });
+  const categoryData: IdataCategory[] = categoryQuery.data?.data.data.data;
+  const productData: IProductItem[] = productQuery.data?.data.data.data;
   return (
     <Container>
       <Slideshow />
@@ -98,11 +104,12 @@ const Home = () => {
       <BrowserCategories>
         <BrowserCategoriesTitle>Browser categories</BrowserCategoriesTitle>
         <CategoriesWrapper>
-          {dataCategory?.map((item: IdataCategory, index: number) => (
+          {categoryData?.map((item: IdataCategory, index: number) => (
             <CategoryItem key={index}>
               <CategoryTitle>{item.name}</CategoryTitle>
               <CategoryItemImgWrapper>
                 <CategoryItemImg src={item.category_img} alt={item.name} />
+                <CategoryItemImg src="" alt={item.name} />
               </CategoryItemImgWrapper>
             </CategoryItem>
           ))}
@@ -114,7 +121,7 @@ const Home = () => {
           <PopularProductTitle>Popular Products</PopularProductTitle>
           <FilterWrapper>brtntnrt</FilterWrapper>
         </PopularProductHeader>
-        <ListItem data={products} ItemPerRow={5} ItemPerRowOnMobile={2} />
+        <ListItem data={productData} ItemPerRow={5} ItemPerRowOnMobile={2} />
       </PopularProductWrapper>
     </Container>
   );
