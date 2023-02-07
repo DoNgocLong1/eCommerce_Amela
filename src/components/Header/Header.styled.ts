@@ -6,9 +6,10 @@ export const Container = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  padding: 0.5em 5em;
+  padding: 1em 5em;
   display: flex;
   justify-content: space-between;
+  gap: 2em;
   align-items: center;
   z-index: 99;
   background-color: ${color.headerColor};
@@ -42,6 +43,7 @@ export const Feature = styled.li`
 `;
 export const IconWrapper = styled.div`
   font-size: 1.8em;
+  cursor: pointer;
 `;
 export const FeatureLink = styled(Link)`
   color: inherit;

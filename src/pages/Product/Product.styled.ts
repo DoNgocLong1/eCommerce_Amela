@@ -1,5 +1,6 @@
 import color from "utils/color";
 import styled from "styled-components";
+import breakPoints from "constants/breakpoint";
 export const Container = styled.div`
   background-color: ${color.backgroundColor} !important;
   width: 100%;
@@ -30,10 +31,64 @@ export const ProductContainer = styled.div`
   padding: 3em 0;
   display: flex;
 `;
+export const SideBarContainer = styled.div`
+  flex: 1;
+  transition: 0.25s ease;
+  @media ${breakPoints.mobile} {
+    width: 70%;
+    height: 100%;
+    flex: unset;
+    position: fixed;
+    top: 7em;
+    left: 0;
+    z-index: 90;
+    transform: ${(props: any) =>
+      props.isShow ? "translateX(0)" : "translateX(-100%)"};
+  }
+`;
 export const SideBar = styled.div`
   background-color: ${color.backgroundItemColor};
-  flex: 1;
   height: fit-content;
+  .ant-menu {
+    background-color: ${color.backgroundItemColor};
+    color: ${color.whiteColor};
+    .ant-menu-submenu-active {
+      background-color: ${color.whiteColor};
+      color: #000;
+    }
+  }
+  @media ${breakPoints.mobile} {
+    height: 80%;
+    overflow-y: scroll;
+  }
+`;
+export const Overlay = styled.div`
+  display: none;
+  @media ${breakPoints.mobile} {
+    display: ${(props: any) => (props.isShow ? "block" : "none")};
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.8;
+    z-index: 50;
+  }
+`;
+export const SideBarToggle = styled.button`
+  display: none;
+  @media ${breakPoints.mobile} {
+    display: flex;
+    position: fixed;
+    top: 1em;
+    right: 0%;
+    transform: translateX(100%);
+    z-index: 90;
+    width: 3em;
+    height: 3em;
+    background-color: #fff;
+  }
 `;
 export const Title = styled.h1`
   font-size: 2em;
@@ -58,6 +113,9 @@ export const CategoryName = styled.p`
   font-size: 1.5em;
   color: ${color.whiteColor};
   flex: 3;
+  @media ${breakPoints.mobile} {
+    font-size: 1.3em;
+  }
 `;
 export const CategoryWrapper = styled.li`
   cursor: pointer;
@@ -76,7 +134,12 @@ export const CategoryWrapper = styled.li`
     }
   }
 `;
+export const SideBarButton = styled.span`
+  color: ${color.orange};
+  font-size: 1.3em;
+`;
 export const ListProductContainer = styled.div`
   flex: 4;
   padding: 0 2em;
+  z-index: 10;
 `;

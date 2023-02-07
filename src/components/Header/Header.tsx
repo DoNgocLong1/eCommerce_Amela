@@ -6,6 +6,7 @@ import {
 import { instance } from "apiServices/instance";
 import images from "assets/images";
 import PropDown from "components/common/PropDown/PropDown";
+import SearchItem from "components/common/SearchItem/SearchItem";
 import { selectCartList } from "features/cart/cartSlice";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -48,12 +49,12 @@ const Header = () => {
   const { listLength } = useSelector(selectCartList);
   const [show, setShow] = useState<boolean>(false);
   const token = localStorage.getItem("token");
-  console.log(token);
   return (
     <Container>
       <Link to="/">
         <Logo src={images.logo} />
       </Link>
+      <SearchItem />
       <FeatureWrapper>
         <Feature>
           <IconWrapper>

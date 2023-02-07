@@ -109,7 +109,6 @@ const Home = () => {
               <CategoryTitle>{item.name}</CategoryTitle>
               <CategoryItemImgWrapper>
                 <CategoryItemImg src={item.category_img} alt={item.name} />
-                <CategoryItemImg src="" alt={item.name} />
               </CategoryItemImgWrapper>
             </CategoryItem>
           ))}
