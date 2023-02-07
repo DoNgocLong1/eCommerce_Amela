@@ -43,15 +43,16 @@ const ListItem = ({ data, ItemPerRow }: IListItem) => {
     console.log(payload);
     dispatch(addItem(payloadData));
   };
+  console.log(data);
   return (
     <Container>
       <ListItemWrapper ItemPerRow={ItemPerRow}>
-        {data?.map((item, index) => (
+        {data?.map((item: any, index) => (
           <ItemWrapper key={index}>
             <Discount>-25%</Discount>
             <ItemImageWrapper>
               <Link to={"/"}>
-                <ItemImage src={item.image} alt={item.name} />
+                <ItemImage src={item.images[0].product_img} alt={item.name} />
               </Link>
               <ProductActionWrapper>
                 <ProductAction>

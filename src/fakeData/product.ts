@@ -21,8 +21,7 @@ let products: any = [
   {
     id: "SKU: 210600464",
     name: "Graphic card ASUS ROG Strix LC Radeon RX 6900 XT 16GB GDDR6 ROG-STRIX-LC-RX6900XT-T16G-GAMING",
-    image:
-      "https://product.hstatic.net/1000026716/product/aorus_radeon__rx_6900_xt_master_16g-09_d4a81e53df6c479e83e1f521f63790d2.png",
+    image: "",
     brand: "ASUS",
     price: "2.880",
     type: "graphicCard",
@@ -131,6 +130,8 @@ let products: any = [
     type: "laptop",
     rate: "2.5",
   },
+
+  //break
   {
     id: "NBAC0305",
     name: "Laptop Gaming Acer Predator Triton 500 SE PT516-51S - Core i7 11800H, RTX 3060 QHD 165Hz",

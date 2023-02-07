@@ -24,6 +24,7 @@ import googlePlayPaymnet from "./images/googlePlayPaymnet.avif";
 import appStorePaymnet from "./images/appStorePaymnet.avif";
 import cardPayment from "./images/cardPayment.avif";
 import productBanner from "./images/productBanner.jpg";
+import cartBanner from "./images/cartBanner.jpg";
 const images = {
   loginImage,
   loginBackground,
@@ -50,6 +51,7 @@ const images = {
   appStorePaymnet,
   cardPayment,
   productBanner,
+  cartBanner,
 };
 export const slideShow = [
   slideShow1,

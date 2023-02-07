@@ -3,6 +3,7 @@ import styled from "styled-components";
 import images from "assets/images";
 import { Link } from "react-router-dom";
 import color from "utils/color";
+import { Form } from "antd";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -42,6 +43,9 @@ export const LoginWrapper = styled.div`
     padding: 0.5em 5em;
     height: 100%;
   }
+  .ant-form-item-control {
+    margin: 0;
+  }
   @media ${breakPoints.mobile} {
     .ant-input-affix-wrapper {
       padding: 0.2em 0.5em;
@@ -66,6 +70,10 @@ export const LoginFeatureLogin = styled.div`
   justify-content: space-between;
   align-self: center;
   padding: 1em 0;
+`;
+export const ButtonWrapper = styled(Form.Item)`
+  display: flex;
+  justify-content: center;
 `;
 export const ForgotPassword = styled(Link)`
   font-size: 1em;
