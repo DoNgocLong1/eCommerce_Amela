@@ -1,21 +1,30 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { searchProduct } from "apiServices/productService";
+import { fetchProduct } from "apiServices/productService";
 import React, { useState } from "react";
-import { createSearchParams, useNavigate } from "react-router-dom";
+import {
+  createSearchParams,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { IconWrapper, SearchInput, SearchWrapper } from "./SearchItem.styled";
 
 const SearchItem = () => {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries([...searchParams]);
+
   const handleSearch = (): void => {
-    console.log(searchProduct(search));
-    searchProduct(search);
     navigate({
-      pathname: "/product",
+      pathname,
       search: createSearchParams({
-        search: String(search),
+        ...params,
+        search: search,
       }).toString(),
     });
+    fetchProduct(params);
   };
   return (
     <SearchWrapper>

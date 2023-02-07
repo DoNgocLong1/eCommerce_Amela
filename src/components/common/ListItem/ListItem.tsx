@@ -1,8 +1,8 @@
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
-import { addItem, selectCartList } from "features/cart/cartSlice";
+import { addItem } from "features/cart/cartSlice";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { CartItemType } from "types/cartType.type";
 import { IProductItem } from "types/productType.type";
@@ -30,9 +30,7 @@ interface IListItem {
   ItemPerRowOnMobile?: number;
 }
 const ListItem = ({ data, ItemPerRow }: IListItem) => {
-  const state = useSelector(selectCartList);
   const dispatch = useDispatch();
-  console.log(state);
   const handleAddItem = (payload: IProductItem): void => {
     const payloadData: CartItemType = {
       id: payload.id,
@@ -40,10 +38,8 @@ const ListItem = ({ data, ItemPerRow }: IListItem) => {
       name: payload.name,
       price: +payload.price,
     };
-    console.log(payload);
     dispatch(addItem(payloadData));
   };
-  console.log(data);
   return (
     <Container>
       <ListItemWrapper ItemPerRow={ItemPerRow}>

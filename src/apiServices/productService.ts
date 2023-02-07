@@ -1,5 +1,26 @@
 import { instance } from "./instance";
-export const fetchProduct = async () => {
+export const fetchProduct = async (params: any = "") => {
+  console.log("params", params);
+  const isCategory: boolean = Object.keys(params).includes("category");
+  console.log(isCategory);
+  if (isCategory) {
+    const data = await instance
+      .post("category", { id: params.category })
+      .then((response) => response)
+      .catch((error) => {
+        console.log(error);
+      });
+    return data;
+  }
+  const data = await instance
+    .get(`products/filter`, { params: params })
+    .then((response) => response)
+    .catch((error) => {
+      console.log(error);
+    });
+  return data;
+};
+export const listProduct = async () => {
   const data = await instance
     .get(`products`)
     .then((response) => response)
@@ -8,19 +29,9 @@ export const fetchProduct = async () => {
     });
   return data;
 };
-export const filter = async (rule: string) => {
+export const minMax = async () => {
   const data = await instance
-    .get(`products/filter?time=${rule}`)
-    /* .get(`products/search/${rule}`) */
-    .then((response) => response)
-    .catch((error) => {
-      console.log(error);
-    });
-  return data;
-};
-export const searchProduct = async (value: string) => {
-  const data = await instance
-    .get(`products/search/${value}`)
+    .get(`data-price`)
     .then((response) => response)
     .catch((error) => {
       console.log(error);

@@ -7,6 +7,7 @@ export interface IProductItem {
   price: number;
 }
 export interface IdataCategory {
+  id: string;
   name: string;
   category_img: string;
 }
