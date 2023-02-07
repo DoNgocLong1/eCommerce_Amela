@@ -23,13 +23,12 @@ import {
   PopularProductWrapper,
   ShopNowButton,
 } from "./Home.styled";
-/* import products from "fakeData/product"; */
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { instance } from "apiServices/instance";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { IdataCategory, IProductItem } from "types/productType.type";
-import { fetchProduct } from "apiServices/productService";
+import { listProduct } from "apiServices/productService";
 const Home = () => {
   const fetchCategory = async () => {
     const data = await instance
@@ -47,7 +46,7 @@ const Home = () => {
   });
   const productQuery = useQuery({
     queryKey: ["product"],
-    queryFn: fetchProduct,
+    queryFn: listProduct,
   });
   const categoryData: IdataCategory[] = categoryQuery.data?.data.data.data;
   const productData: IProductItem[] = productQuery.data?.data.data.data;
