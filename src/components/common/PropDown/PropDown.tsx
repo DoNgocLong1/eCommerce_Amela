@@ -1,7 +1,7 @@
 import { instance } from "apiServices/instance";
-import { selectCartList } from "features/cart/cartSlice";
+import { decreaseItem, selectCartList } from "features/cart/cartSlice";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -18,12 +18,37 @@ import {
   PropDownItemWrapper,
   PropDownListItemWrapper,
   PropDownTitle,
+  QuantityButton,
+  QuantityWrapper,
 } from "./PropDown.styled";
+import { addItem } from "features/cart/cartSlice";
+import { CartItemType } from "types/cartType.type";
 interface IPropDown {
   isShow: boolean;
 }
 const PropDown = ({ isShow }: IPropDown) => {
   const { cartList, totalPrice } = useSelector(selectCartList);
+  const dispatch = useDispatch();
+  const handleAddItem = (payload: any): void => {
+    console.log(payload);
+    const payloadData: CartItemType = {
+      id: payload.id,
+      img: payload.img || "",
+      name: payload.name,
+      price: +payload.price,
+    };
+    dispatch(addItem(payloadData));
+  };
+  const handleDecreaseItem = (payload: any): void => {
+    console.log(payload);
+    const payloadData: CartItemType = {
+      id: payload.id,
+      img: payload.img || "",
+      name: payload.name,
+      price: +payload.price,
+    };
+    dispatch(decreaseItem(payloadData));
+  };
   let orderList: any = [];
   for (const item of cartList) {
     const params = {
@@ -61,7 +86,15 @@ const PropDown = ({ isShow }: IPropDown) => {
             <ItemImg src={item.img} />
             <ItemDetailWrapper>
               <ItemDetailName>{item.name}</ItemDetailName>
-              <ItemDetailQuantity>{item.count} x</ItemDetailQuantity>
+              <QuantityWrapper>
+                <QuantityButton onClick={() => handleAddItem(item)}>
+                  in
+                </QuantityButton>
+                <ItemDetailQuantity>{item.count} x</ItemDetailQuantity>
+                <QuantityButton onClick={() => handleDecreaseItem(item)}>
+                  de
+                </QuantityButton>
+              </QuantityWrapper>
               <ItemDetailPrice>{item.price}$</ItemDetailPrice>
             </ItemDetailWrapper>
           </PropDownItemWrapper>

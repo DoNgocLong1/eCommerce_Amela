@@ -10,6 +10,7 @@ import Registry from "pages/Registry/Registry";
 import Product from "pages/Product/Product";
 import ProductDetail from "pages/ProductDetail/ProductDetail";
 import Cart from "pages/Cart/Cart";
+import Account from "pages/Account/Account";
 const Routers = () => {
   const state = useSelector(selectAuth);
   console.log("auth state", state);
@@ -56,6 +57,14 @@ const Routers = () => {
       element: (
         <DefaultLayout>
           <Cart />
+        </DefaultLayout>
+      ),
+    },
+    {
+      path: "/account",
+      element: (
+        <DefaultLayout>
+          <Account />
         </DefaultLayout>
       ),
     },

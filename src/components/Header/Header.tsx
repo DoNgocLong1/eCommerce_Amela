@@ -62,12 +62,12 @@ const Header = () => {
           </IconWrapper>
           Wishlist
         </Feature>
-        <Feature
-          onClick={() => {
-            setShow((prev) => (prev ? false : true));
-          }}
-        >
-          <IconWrapper>
+        <Feature>
+          <IconWrapper
+            onClick={() => {
+              setShow((prev) => (prev ? false : true));
+            }}
+          >
             <ShoppingCartOutlined />
           </IconWrapper>
           Cart

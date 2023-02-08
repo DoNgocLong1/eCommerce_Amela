@@ -61,6 +61,12 @@ export const ItemDetailName = styled.p`
 export const ItemDetailQuantity = styled.p`
   font-size: 0.9em;
 `;
+export const QuantityWrapper = styled.div`
+  display: flex;
+`;
+export const QuantityButton = styled.button`
+  display: flex;
+`;
 export const ItemDetailPrice = styled.p`
   font-size: 0.9em;
   color: ${color.orange};
