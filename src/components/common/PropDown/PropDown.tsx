@@ -1,5 +1,9 @@
 import { instance } from "apiServices/instance";
-import { decreaseItem, selectCartList } from "features/cart/cartSlice";
+import {
+  decreaseItem,
+  removeItem,
+  selectCartList,
+} from "features/cart/cartSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -20,9 +24,11 @@ import {
   PropDownTitle,
   QuantityButton,
   QuantityWrapper,
+  RemoveButton,
 } from "./PropDown.styled";
 import { addItem } from "features/cart/cartSlice";
 import { CartItemType } from "types/cartType.type";
+import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
 interface IPropDown {
   isShow: boolean;
 }
@@ -49,6 +55,17 @@ const PropDown = ({ isShow }: IPropDown) => {
     };
     dispatch(decreaseItem(payloadData));
   };
+  const handleRemove = (payload: any): void => {
+    console.log(payload);
+    const payloadData: CartItemType = {
+      id: payload.id,
+      img: payload.img || "",
+      name: payload.name,
+      price: +payload.price,
+    };
+    dispatch(removeItem(payloadData));
+  };
+  console.log(handleRemove);
   let orderList: any = [];
   for (const item of cartList) {
     const params = {
@@ -83,19 +100,24 @@ const PropDown = ({ isShow }: IPropDown) => {
       <PropDownListItemWrapper>
         {cartList.map((item, index) => (
           <PropDownItemWrapper key={index}>
+            <RemoveButton onClick={() => handleRemove(item)}>
+              <CloseOutlined />
+            </RemoveButton>
             <ItemImg src={item.img} />
             <ItemDetailWrapper>
               <ItemDetailName>{item.name}</ItemDetailName>
               <QuantityWrapper>
                 <QuantityButton onClick={() => handleAddItem(item)}>
-                  in
+                  <PlusOutlined />
                 </QuantityButton>
                 <ItemDetailQuantity>{item.count} x</ItemDetailQuantity>
                 <QuantityButton onClick={() => handleDecreaseItem(item)}>
-                  de
+                  <MinusOutlined />
                 </QuantityButton>
               </QuantityWrapper>
-              <ItemDetailPrice>{item.price}$</ItemDetailPrice>
+              <ItemDetailPrice>
+                {item.price * Number(item.count)}$
+              </ItemDetailPrice>
             </ItemDetailWrapper>
           </PropDownItemWrapper>
         ))}

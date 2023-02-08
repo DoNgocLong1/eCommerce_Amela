@@ -33,6 +33,19 @@ export const PropDownItemWrapper = styled.li`
   width: 100%;
   border-radius: 0.2em;
   border: 1px solid ${color.orange};
+  position: relative;
+`;
+export const RemoveButton = styled.button`
+  position: absolute;
+  right: 0.1em;
+  top: 0.1em;
+  padding: 0.2em 0.3em;
+  border: none;
+  font-size: 1em;
+  background-color: transparent;
+  :hover {
+    color: ${color.orange};
+  }
 `;
 export const ItemImg = styled.img`
   height: 4em;
@@ -66,6 +79,14 @@ export const QuantityWrapper = styled.div`
 `;
 export const QuantityButton = styled.button`
   display: flex;
+  padding: 0.2em 0.3em;
+  border: none;
+  font-size: 0.8em;
+
+  background-color: transparent;
+  :hover {
+    color: ${color.orange};
+  }
 `;
 export const ItemDetailPrice = styled.p`
   font-size: 0.9em;
