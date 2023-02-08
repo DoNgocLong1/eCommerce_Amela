@@ -9,6 +9,13 @@ export const Container = styled.div`
   flex-direction: column;
   color: ${color.whiteColor};
 `;
+export const LoadingWrapper = styled.div`
+  height: 60em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const BannerWrapper = styled.div`
   height: 40em;
   overflow: hidden;

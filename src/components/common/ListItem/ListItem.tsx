@@ -31,10 +31,11 @@ interface IListItem {
 }
 const ListItem = ({ data, ItemPerRow }: IListItem) => {
   const dispatch = useDispatch();
-  const handleAddItem = (payload: IProductItem): void => {
+  const handleAddItem = (payload: any): void => {
+    console.log(payload);
     const payloadData: CartItemType = {
       id: payload.id,
-      img: payload.image,
+      img: payload.images[0]?.product_img,
       name: payload.name,
       price: +payload.price,
     };
@@ -48,7 +49,7 @@ const ListItem = ({ data, ItemPerRow }: IListItem) => {
             <Discount>-25%</Discount>
             <ItemImageWrapper>
               <Link to={"/"}>
-                <ItemImage src={item.images[0].product_img} alt={item.name} />
+                <ItemImage src={item.images[0]?.product_img} alt={item.name} />
               </Link>
               <ProductActionWrapper>
                 <ProductAction>

@@ -9,6 +9,7 @@ import {
   CategoryWrapper,
   Container,
   ListProductContainer,
+  LoadingWrapper,
   Overlay,
   ProductContainer,
   SideBar,
@@ -22,7 +23,7 @@ import { instance } from "apiServices/instance";
 import { IdataCategory, IProductItem } from "types/productType.type";
 import { useQuery } from "react-query";
 import images from "assets/images";
-import Navigation from "components/common/Navigation/Navigation";
+import Navigation from "components/common/Navigation/Pagination";
 import { fetchProduct, minMax } from "apiServices/productService";
 import {
   useNavigate,
@@ -35,8 +36,19 @@ import {
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { MenuProps, Slider } from "antd";
+import { MenuProps, Slider, Space, Spin } from "antd";
 import { Menu } from "antd";
+const Loading = () => {
+  return (
+    <LoadingWrapper>
+      <Space>
+        <Spin tip="Loading" size="large">
+          <div className="content" />
+        </Spin>
+      </Space>
+    </LoadingWrapper>
+  );
+};
 const Product = () => {
   //lay ve tat ca params
   const { pathname } = useLocation();
@@ -70,7 +82,6 @@ const Product = () => {
   });
   const dataCategory: IdataCategory[] = categoryQuery.data?.data.data.data;
   const handleFilter = (tag: string): void => {
-    console.log(tag);
     navigate({
       pathname: "/product",
       search: createSearchParams({
@@ -80,21 +91,22 @@ const Product = () => {
   };
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries([...searchParams]);
-  console.log(params);
   const productQuery = useQuery({
     queryKey: ["product", params],
     queryFn: () => fetchProduct(params || ""),
   });
-  console.log(productQuery);
   const minMaxQuery = useQuery({
     queryKey: ["minmax"],
     queryFn: minMax,
   });
   const minPrice = minMaxQuery.data?.data.data.min;
   const maxPrice = minMaxQuery.data?.data.data.max;
-  console.log("minNumber", minPrice);
-  console.log("maxNumber", maxPrice);
   const productData: IProductItem[] = productQuery.data?.data.data.data;
+  console.log(productQuery.data?.data.data);
+  const totalItem = productQuery.data?.data.data.total;
+  const itemPerPage = productQuery.data?.data.data.per_page;
+  console.log("totalItem", totalItem);
+  console.log("itemPerPage", itemPerPage);
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
   const items: MenuItem[] = [
     getItem("Time", "sub1", <MailOutlined />, [
@@ -187,6 +199,9 @@ const Product = () => {
       ),
     ]),
   ];
+  if (productQuery.isLoading) {
+    return <Loading />;
+  }
   return (
     <Container>
       <Overlay isShow={showSideBar} />
@@ -229,7 +244,7 @@ const Product = () => {
           <ListItem data={productData} ItemPerRow={5} ItemPerRowOnMobile={2} />
         </ListProductContainer>
       </ProductContainer>
-      <Navigation />
+      <Navigation totalItem={totalItem} itemPerPage={itemPerPage} />
     </Container>
   );
 };
