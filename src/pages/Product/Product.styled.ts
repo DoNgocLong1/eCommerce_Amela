@@ -22,6 +22,9 @@ export const BannerWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  @media ${breakPoints.mobile} {
+    height: fit-content;
+  }
 `;
 export const Banner = styled.img`
   width: 100%;
@@ -32,6 +35,11 @@ export const BannerTitle = styled.h1`
   top: 1.5em;
   left: 1.5em;
   color: ${color.whiteColor};
+  @media ${breakPoints.mobile} {
+    font-size: 3em;
+    top: 1em;
+    left: 1em;
+  }
 `;
 export const ProductContainer = styled.div`
   width: 100%;
@@ -88,13 +96,17 @@ export const SideBarToggle = styled.button`
   @media ${breakPoints.mobile} {
     display: flex;
     position: fixed;
-    top: 1em;
-    right: 0%;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
     transform: translateX(100%);
     z-index: 90;
-    width: 3em;
-    height: 3em;
-    background-color: #fff;
+    padding: 0.2em;
+    font-size: 3em;
+    color: ${color.whiteColor};
+    background-color: #000;
+    border: none;
   }
 `;
 export const Title = styled.h1`
@@ -110,9 +122,11 @@ export const CategoriesContainer = styled.ul`
   justify-content: flex-start;
   gap: 1em;
 `;
+export const CategoryImgWarper = styled.div`
+  min-width: 5em;
+`;
 export const CategoryImg = styled.img`
-  width: 5em;
-  flex: 1;
+  height: 100%;
 `;
 export const CategoryName = styled.p`
   display: flex;
@@ -127,6 +141,7 @@ export const CategoryName = styled.p`
 export const CategoryWrapper = styled.li`
   cursor: pointer;
   padding: 1em;
+  height: 5em;
   display: flex;
   justify-content: flex-start;
   gap: 1em;
@@ -143,7 +158,7 @@ export const CategoryWrapper = styled.li`
 `;
 export const SideBarButton = styled.span`
   color: ${color.orange};
-  font-size: 1.3em;
+  font-size: 1em;
 `;
 export const ListProductContainer = styled.div`
   flex: 4;

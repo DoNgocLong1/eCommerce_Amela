@@ -1,7 +1,4 @@
-import { instance } from "apiServices/instance";
-import { decreaseItem, selectCartList } from "features/cart/cartSlice";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -20,45 +17,26 @@ import {
   PropDownTitle,
   QuantityButton,
   QuantityWrapper,
+  RemoveButton,
 } from "./PropDown.styled";
-import { addItem } from "features/cart/cartSlice";
-import { CartItemType } from "types/cartType.type";
+import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import useCart from "hooks/useCart";
 interface IPropDown {
   isShow: boolean;
 }
 const PropDown = ({ isShow }: IPropDown) => {
-  const { cartList, totalPrice } = useSelector(selectCartList);
-  const dispatch = useDispatch();
-  const handleAddItem = (payload: any): void => {
-    console.log(payload);
-    const payloadData: CartItemType = {
-      id: payload.id,
-      img: payload.img || "",
-      name: payload.name,
-      price: +payload.price,
-    };
-    dispatch(addItem(payloadData));
-  };
-  const handleDecreaseItem = (payload: any): void => {
-    console.log(payload);
-    const payloadData: CartItemType = {
-      id: payload.id,
-      img: payload.img || "",
-      name: payload.name,
-      price: +payload.price,
-    };
-    dispatch(decreaseItem(payloadData));
-  };
-  let orderList: any = [];
-  for (const item of cartList) {
-    const params = {
-      product_id: item.id,
-      quantity: item.count,
-    };
-    orderList = [...orderList, params];
-  }
+  const {
+    handleAddItem,
+    handleDecreaseItem,
+    handleRemove,
+    cartList,
+    orderList,
+    totalPrice,
+  } = useCart();
+  console.log(orderList);
   const onOrder = async () => {
-    const params: any = {
+    console.log("first");
+    /* const params: any = {
       user_id: 1,
       amount: totalPrice,
       obj: orderList,
@@ -75,7 +53,7 @@ const PropDown = ({ isShow }: IPropDown) => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); */
   };
   return (
     <Container isShow={isShow}>
@@ -83,19 +61,24 @@ const PropDown = ({ isShow }: IPropDown) => {
       <PropDownListItemWrapper>
         {cartList.map((item, index) => (
           <PropDownItemWrapper key={index}>
+            <RemoveButton onClick={() => handleRemove(item)}>
+              <CloseOutlined />
+            </RemoveButton>
             <ItemImg src={item.img} />
             <ItemDetailWrapper>
               <ItemDetailName>{item.name}</ItemDetailName>
               <QuantityWrapper>
                 <QuantityButton onClick={() => handleAddItem(item)}>
-                  in
+                  <PlusOutlined />
                 </QuantityButton>
                 <ItemDetailQuantity>{item.count} x</ItemDetailQuantity>
                 <QuantityButton onClick={() => handleDecreaseItem(item)}>
-                  de
+                  <MinusOutlined />
                 </QuantityButton>
               </QuantityWrapper>
-              <ItemDetailPrice>{item.price}$</ItemDetailPrice>
+              <ItemDetailPrice>
+                {item.price * Number(item.count)}$
+              </ItemDetailPrice>
             </ItemDetailWrapper>
           </PropDownItemWrapper>
         ))}
