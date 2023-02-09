@@ -1,6 +1,5 @@
 import { instance } from "./instance";
 export const fetchProduct = async (params: any = "") => {
-  console.log("params", params);
   const isCategory: boolean = Object.keys(params).includes("category");
   console.log(isCategory);
   if (isCategory) {

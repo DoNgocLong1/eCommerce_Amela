@@ -82,7 +82,6 @@ export const QuantityButton = styled.button`
   padding: 0.2em 0.3em;
   border: none;
   font-size: 0.8em;
-
   background-color: transparent;
   :hover {
     color: ${color.orange};

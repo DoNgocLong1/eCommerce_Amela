@@ -7,7 +7,6 @@ import {
   BannerContent,
   BannerDescription,
   BannerImg,
-  BannerTitle,
   BannerWrapper,
   BrowserCategories,
   BrowserCategoriesTitle,
@@ -24,32 +23,13 @@ import {
   ShopNowButton,
 } from "./Home.styled";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { instance } from "apiServices/instance";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { IdataCategory, IProductItem } from "types/productType.type";
-import { listProduct } from "apiServices/productService";
+import { IdataCategory } from "types/productType.type";
+import useCategory from "hooks/useCategory";
+import useProduct from "hooks/useProduct";
 const Home = () => {
-  const fetchCategory = async () => {
-    const data = await instance
-      .get("categories")
-      .then((response) => response)
-      .catch((error) => {
-        console.log(error);
-      });
-    return data;
-  };
-  console.log(fetchCategory());
-  const categoryQuery = useQuery({
-    queryKey: ["listCategory"],
-    queryFn: fetchCategory,
-  });
-  const productQuery = useQuery({
-    queryKey: ["product"],
-    queryFn: listProduct,
-  });
-  const categoryData: IdataCategory[] = categoryQuery.data?.data.data.data;
-  const productData: IProductItem[] = productQuery.data?.data.data.data;
+  const categoryData: IdataCategory[] = useCategory();
+  const { popularProductData } = useProduct();
   return (
     <Container>
       <Slideshow />
@@ -62,7 +42,6 @@ const Home = () => {
           </Link>
           <BannerImg src={images.laptopBanner} />
           <BannerDescription>
-            <BannerTitle>Laptops</BannerTitle>
             <BannerContent>
               Play wherever you want, with a slimmer laptop powered by the
               latest hardware.
@@ -77,7 +56,6 @@ const Home = () => {
           </Link>
           <BannerImg src={images.monitorBanner} />
           <BannerDescription>
-            <BannerTitle>Monitors</BannerTitle>
             <BannerContent>
               Your game monitor should be the best, whether curved, flat, 4K or
               FHD.
@@ -92,7 +70,6 @@ const Home = () => {
           </Link>
           <BannerImg src={images.accessoryBanner} />
           <BannerDescription>
-            <BannerTitle>Accessory</BannerTitle>
             <BannerContent>
               Outfit your setup with super responsive mice, mechanical
               keyboards, sound-rich headphones, and comfortable gaming chairs.
@@ -119,7 +96,11 @@ const Home = () => {
           <PopularProductTitle>Popular Products</PopularProductTitle>
           <FilterWrapper>brtntnrt</FilterWrapper>
         </PopularProductHeader>
-        <ListItem data={productData} ItemPerRow={5} ItemPerRowOnMobile={2} />
+        <ListItem
+          data={popularProductData}
+          ItemPerRow={5}
+          ItemPerRowOnMobile={2}
+        />
       </PopularProductWrapper>
     </Container>
   );
