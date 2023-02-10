@@ -20,6 +20,8 @@ import {
   Logo,
   Quantity,
   QuantitySpan,
+  SearchWrapper,
+  UserImg,
 } from "./Header.styled";
 const Logout = () => {
   const handleLogout = async () => {
@@ -38,11 +40,14 @@ const Logout = () => {
         console.log(err);
       });
   };
+  const user = localStorage.getItem("user");
+  const userAvatar = JSON.parse(user || "").user_img;
   return (
-    <Feature onClick={handleLogout}>
-      <UserOutlined />
-      Logout
-    </Feature>
+    <Link to="/account">
+      <Feature onClick={handleLogout}>
+        <UserImg src={userAvatar} />
+      </Feature>
+    </Link>
   );
 };
 const Header = () => {
@@ -54,7 +59,9 @@ const Header = () => {
       <Link to="/">
         <Logo src={images.logo} />
       </Link>
-      <SearchItem />
+      <SearchWrapper>
+        <SearchItem />
+      </SearchWrapper>
       <FeatureWrapper>
         <Feature>
           <IconWrapper>

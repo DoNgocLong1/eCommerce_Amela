@@ -15,6 +15,7 @@ import {
 import { Button, DatePicker, Form, Input, message, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
+import { updateUserProfile } from "apiServices/userServices";
 const Account = () => {
   const props: UploadProps = {
     name: "file",
@@ -33,38 +34,55 @@ const Account = () => {
       }
     },
   };
+  const onFinish = async (values: any) => {
+    console.log(values);
+    const formData = {
+      name: values.username,
+      phone: values.phoneNumber,
+      address: values.address,
+      date_of_birth: values.date,
+    };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+    updateUserProfile(formData, config);
+  };
+  const user = localStorage.getItem("user");
+  const userData = JSON.parse(user || "");
   return (
     <Container>
       <Sidebar>
         <SidebarContainer>
           <SidebarHeader>
-            <SidebarHeaderImg src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU" />
+            <SidebarHeaderImg src={userData.user_img} />
             <SidebarInfoWrapper>
-              <UserName>Đỗ Ngọc Long</UserName>
-              <UserEmail>dongoclong101001</UserEmail>
+              <UserName>{userData.name}</UserName>
+              <UserEmail>{userData.email}</UserEmail>
             </SidebarInfoWrapper>
           </SidebarHeader>
         </SidebarContainer>
       </Sidebar>
       <AccountContainer>
-        <Form layout="horizontal" size="large">
-          <Form.Item label="User Name">
-            <Input />
+        <Form layout="horizontal" size="large" onFinish={onFinish}>
+          <Form.Item name="username">
+            <Input placeholder="Username" />
           </Form.Item>
-          <Form.Item label="Email">
-            <Input />
+          <Form.Item name="email">
+            <Input placeholder="Email" />
           </Form.Item>
-          <Form.Item label="Address">
-            <Input />
+          <Form.Item name="address">
+            <Input placeholder="Address" />
           </Form.Item>
-          <Form.Item label="Phone number">
-            <Input />
+          <Form.Item name="phoneNumber">
+            <Input placeholder="Phone number" />
           </Form.Item>
-          <Form.Item label="DatePicker">
+          <Form.Item name="date">
             <DatePicker />
           </Form.Item>
-          <Form.Item label="Button">
-            <Button>Button</Button>
+          <Form.Item name="submit">
+            <Button htmlType="submit">Button</Button>
           </Form.Item>
         </Form>
         <UploadAvatar>

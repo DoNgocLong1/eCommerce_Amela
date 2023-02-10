@@ -1,7 +1,9 @@
 import {
   DollarCircleOutlined,
+  FallOutlined,
   FieldTimeOutlined,
   FontColorsOutlined,
+  RiseOutlined,
   SortAscendingOutlined,
   SortDescendingOutlined,
 } from "@ant-design/icons";
@@ -60,23 +62,35 @@ const ProductSideBar = () => {
     ]),
     getItem("Price", "sub4", <DollarCircleOutlined />, [
       getItem(
+        <SideBarButton onClick={() => transmissionParams("price", "increase")}>
+          <RiseOutlined /> Increase
+        </SideBarButton>,
+        "3"
+      ),
+      getItem(
+        <SideBarButton onClick={() => transmissionParams("price", "decrease")}>
+          <FallOutlined /> Decrease
+        </SideBarButton>,
+        "4"
+      ),
+      getItem(
         <Slider
           range={{ draggableTrack: true }}
-          defaultValue={[4, 9]}
+          defaultValue={[minPrice, maxPrice]}
           min={minPrice}
           max={maxPrice}
           onChange={(e: any) =>
             twoKeysTransmissionParams("price_from", e[0], "price_to", e[1])
           }
         />,
-        "5"
+        "6"
       ),
     ]),
   ];
   return (
     <Menu
       style={{ width: "100%" }}
-      defaultOpenKeys={["sub1"]}
+      defaultOpenKeys={["sub2"]}
       mode="inline"
       items={items}
     />

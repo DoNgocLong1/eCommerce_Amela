@@ -96,11 +96,7 @@ const Home = () => {
           <PopularProductTitle>Popular Products</PopularProductTitle>
           <FilterWrapper>brtntnrt</FilterWrapper>
         </PopularProductHeader>
-        <ListItem
-          data={popularProductData}
-          ItemPerRow={5}
-          ItemPerRowOnMobile={2}
-        />
+        <ListItem data={popularProductData} />
       </PopularProductWrapper>
     </Container>
   );

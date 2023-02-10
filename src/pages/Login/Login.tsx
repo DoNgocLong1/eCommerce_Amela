@@ -29,8 +29,9 @@ const Login = () => {
         if (!res.data.data) {
           console.log("login failed");
         }
-        console.log(res.data.data.data.token);
+        console.log(res.data.data);
         localStorage.setItem("token", res.data.data.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.data.user));
         dispatch(loginSuccess(res.data.data));
         navigate("/");
       })

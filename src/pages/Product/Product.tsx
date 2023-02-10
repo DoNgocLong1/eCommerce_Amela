@@ -10,7 +10,6 @@ import {
   CategoryWrapper,
   Container,
   ListProductContainer,
-  LoadingWrapper,
   Overlay,
   ProductContainer,
   SideBar,
@@ -23,22 +22,11 @@ import { IdataCategory } from "types/productType.type";
 import images from "assets/images";
 import Navigation from "components/common/Navigation/Pagination";
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { Space, Spin } from "antd";
 import useCategory from "hooks/useCategory";
 import useProduct from "hooks/useProduct";
 import ProductSideBar from "./components/ProductSideBar";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
-const Loading = () => {
-  return (
-    <LoadingWrapper>
-      <Space>
-        <Spin tip="Loading" size="large">
-          <div className="content" />
-        </Spin>
-      </Space>
-    </LoadingWrapper>
-  );
-};
+import Loading from "components/common/Loading/Loading";
 const Product = () => {
   const navigate = useNavigate();
   const categoryData: IdataCategory[] = useCategory();
@@ -52,9 +40,6 @@ const Product = () => {
   };
   const { productData, totalItem, itemPerPage, productQuery } = useProduct();
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
-  if (productQuery.isLoading) {
-    return <Loading />;
-  }
   return (
     <Container>
       <Overlay isShow={showSideBar} />
@@ -91,7 +76,17 @@ const Product = () => {
           </SideBar>
         </SideBarContainer>
         <ListProductContainer>
-          <ListItem data={productData} ItemPerRow={5} ItemPerRowOnMobile={2} />
+          {productQuery.isLoading ? (
+            <Loading />
+          ) : (
+            <ListItem
+              data={productData}
+              ItemPerRow={4}
+              ItemPerRowOnMobile={2}
+              ItemPerRowOnTablet={3}
+              size="1fr"
+            />
+          )}
         </ListProductContainer>
       </ProductContainer>
       <Navigation totalItem={totalItem} itemPerPage={itemPerPage} />
