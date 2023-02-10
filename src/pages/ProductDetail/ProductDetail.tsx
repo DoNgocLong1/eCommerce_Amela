@@ -1,6 +1,8 @@
 import { Rate } from "antd";
-import products from "fakeData/product";
-import React from "react";
+import { productDetail } from "apiServices/productService";
+import Loading from "components/common/Loading/Loading";
+import { useQuery } from "react-query";
+import { useSearchParams } from "react-router-dom";
 import {
   Container,
   ProductDetailWrapper,
@@ -19,32 +21,46 @@ import {
 } from "./ProductDetail.styled";
 
 const ProductDetail = () => {
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries([...searchParams]);
+  const { data, isLoading } = useQuery({
+    queryKey: ["productDetail"],
+    queryFn: () => productDetail(+params.id),
+  });
+  const productDetailData = data?.data.data;
+  console.log(productDetailData);
+  if (isLoading) return <Loading />;
+  if (!productDetailData) return null;
   return (
     <Container>
       <ProductDetailWrapper>
         <ProductGalleryWrapper>
-          <ProductMainImg src={products[5].image} />
+          <ProductMainImg src={productDetailData?.images[0]?.product_img} />
           <GalleryWrapper>
-            <GalleryImg src={products[5].image} />
-            <GalleryImg src={products[5].image} />
-            <GalleryImg src={products[5].image} />
-            <GalleryImg src={products[5].image} />
+            <GalleryImg src={productDetailData?.images[0]?.product_img} />
+            <GalleryImg src={productDetailData?.images[0]?.product_img} />
+            <GalleryImg src={productDetailData?.images[0]?.product_img} />
+            <GalleryImg src={productDetailData?.images[0]?.product_img} />
           </GalleryWrapper>
         </ProductGalleryWrapper>
         <ProductInfoWrapper>
-          <ProductName>{products[5].name}</ProductName>
+          <ProductName>{productDetailData.name}</ProductName>
           <RateWrapper>
-            <Rate disabled allowHalf defaultValue={+products[5].rate} />
-            <RateNumber>({products[5].rate})</RateNumber>
+            <Rate disabled allowHalf defaultValue={+productDetailData.rate} />
+            <RateNumber>({productDetailData.rate})</RateNumber>
           </RateWrapper>
           <SpecificationsContainer>
             <SpecificationWrapper>
               <SpecificationName>Brand:</SpecificationName>
-              <SpecificationDetail>{products[5].brand}</SpecificationDetail>
+              <SpecificationDetail>
+                {productDetailData.brand}
+              </SpecificationDetail>
             </SpecificationWrapper>
             <SpecificationWrapper>
               <SpecificationName>Type:</SpecificationName>
-              <SpecificationDetail>{products[5].type}</SpecificationDetail>
+              <SpecificationDetail>
+                {productDetailData.type}
+              </SpecificationDetail>
             </SpecificationWrapper>
           </SpecificationsContainer>
         </ProductInfoWrapper>

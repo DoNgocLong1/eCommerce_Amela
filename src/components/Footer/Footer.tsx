@@ -8,6 +8,7 @@ import images from "assets/images";
 import React from "react";
 import {
   BrandImg,
+  BrandImgWrapper,
   BrandWrapper,
   BusinessInformationsWrapper,
   BusinessSlogan,
@@ -31,10 +32,18 @@ const Footer = () => {
   return (
     <Container>
       <BrandWrapper>
-        <BrandImg src={images.conceptdBrand} />
-        <BrandImg src={images.predatorBrand} />
-        <BrandImg src={images.spatialLabsBrand} />
-        <BrandImg src={images.planet9Brand} />
+        <BrandImgWrapper>
+          <BrandImg src={images.conceptdBrand} />
+        </BrandImgWrapper>
+        <BrandImgWrapper>
+          <BrandImg src={images.predatorBrand} />
+        </BrandImgWrapper>
+        <BrandImgWrapper>
+          <BrandImg src={images.spatialLabsBrand} />
+        </BrandImgWrapper>
+        <BrandImgWrapper>
+          <BrandImg src={images.planet9Brand} />
+        </BrandImgWrapper>
       </BrandWrapper>
       <Stick />
       <Wrapper>

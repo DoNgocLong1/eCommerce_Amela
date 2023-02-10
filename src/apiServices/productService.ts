@@ -27,6 +27,15 @@ export const listProduct = async () => {
     });
   return data;
 };
+export const productDetail = async (id: number) => {
+  const data = await instance
+    .get(`product/${id}`)
+    .then((response) => response)
+    .catch((error) => {
+      console.log(error);
+    });
+  return data;
+};
 export const minMax = async () => {
   const data = await instance
     .get(`data-price`)

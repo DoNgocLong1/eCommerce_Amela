@@ -7,20 +7,7 @@ export const Container = styled.div`
   padding: 2em 0;
   a {
     text-decoration: none;
-  }
-`;
-export const EmptyContainer = styled(Container)`
-  justify-content: center;
-  .ant-empty {
-    height: 30em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .ant-empty-description {
-    color: ${color.whiteColor};
-    font-size: 2em;
+    width: fit-content;
   }
 `;
 export const CartBannerWrapper = styled.div`

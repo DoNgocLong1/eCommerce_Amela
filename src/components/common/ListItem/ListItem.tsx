@@ -3,7 +3,7 @@ import { Rate } from "antd";
 import { addItem } from "features/cart/cartSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { CartItemType } from "types/cartType.type";
 import { IProductItem } from "types/productType.type";
 import Notification from "../Notification/Notification";
@@ -49,7 +49,15 @@ const ListItem = ({
     };
     dispatch(addItem(payloadData));
   };
-  console.log(size);
+  const navigate = useNavigate();
+  const goToProductDetailPage = (id: number): void => {
+    navigate({
+      pathname: "/product/detail",
+      search: createSearchParams({
+        id: String(id),
+      }).toString(),
+    });
+  };
   return (
     <Container>
       <ListItemWrapper
@@ -60,11 +68,13 @@ const ListItem = ({
       >
         {data?.map((item: any, index) => (
           <ItemWrapper key={index}>
-            <Discount>-25%</Discount>
+            {item.discount > 0 && <Discount>-{item.discount}%</Discount>}
             <ItemImageWrapper>
-              <Link to={"/"}>
-                <ItemImage src={item.images[0]?.product_img} alt={item.name} />
-              </Link>
+              <ItemImage
+                onClick={() => goToProductDetailPage(item.id)}
+                src={item.images[0]?.product_img}
+                alt={item.name}
+              />
               <ProductActionWrapper>
                 <ProductAction>
                   <HeartOutlined style={{ fontSize: "3em", color: "orange" }} />
@@ -74,7 +84,9 @@ const ListItem = ({
               </ProductActionWrapper>
             </ItemImageWrapper>
             <ItemType>{item.type}</ItemType>
-            <ItemName>{item.name}</ItemName>
+            <ItemName onClick={() => goToProductDetailPage(item.id)}>
+              {item.name}
+            </ItemName>
             <RateWrapper>
               <Rate disabled allowHalf defaultValue={+item.rate} />
               <RateNumber>({item.rate})</RateNumber>

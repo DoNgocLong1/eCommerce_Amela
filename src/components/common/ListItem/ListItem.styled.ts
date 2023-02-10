@@ -9,15 +9,6 @@ export const Container = styled.div`
     font-size: 6px;
   }
 `;
-/* export const ListItemWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25em, 25em));
-  row-gap: 2em;
-  column-gap: 2em;
-  @media ${breakPoints.mobile} {
-    grid-template-columns: repeat(2, minmax(25em, 1fr));
-  }
-`; */
 export const ListItemWrapper = styled.div`
   margin: auto;
   display: grid;
@@ -82,7 +73,7 @@ export const ItemImageWrapper = styled.div`
   }
 `;
 export const ItemImage = styled.img`
-  width: 100%;
+  width: 70%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   transition: ease 0.25s;
@@ -163,7 +154,6 @@ export const ItemWrapper = styled.div`
   }
   .ant-rate-star-zero svg,
   .ant-rate-star-half .ant-rate-star-second svg {
-    /* color: ${color.whiteColor}; */
     opacity: 0.8;
   }
   &:hover {

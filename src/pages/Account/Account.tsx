@@ -36,15 +36,19 @@ const Account = () => {
   };
   const onFinish = async (values: any) => {
     console.log(values);
+    const date = `${values.date.$y}-${values.date.$M + 1}-${values.date.$D}`;
     const formData = {
       name: values.username,
       phone: values.phoneNumber,
       address: values.address,
-      date_of_birth: values.date,
+      date_of_birth: date,
     };
+    const token = localStorage.getItem("token");
     const config = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type":
+          "multipart/form-data; boundary=<calculated when request is sent>",
+        Authorization: token ? `Bearer ${token}` : "",
       },
     };
     updateUserProfile(formData, config);
@@ -67,10 +71,10 @@ const Account = () => {
       <AccountContainer>
         <Form layout="horizontal" size="large" onFinish={onFinish}>
           <Form.Item name="username">
-            <Input placeholder="Username" />
+            <Input placeholder="Username" defaultValue={userData.name} />
           </Form.Item>
           <Form.Item name="email">
-            <Input placeholder="Email" />
+            <Input placeholder="Email" disabled defaultValue={userData.email} />
           </Form.Item>
           <Form.Item name="address">
             <Input placeholder="Address" />
