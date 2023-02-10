@@ -8,7 +8,6 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { IconWrapper, SearchInput, SearchWrapper } from "./SearchItem.styled";
-
 const SearchItem = () => {
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();

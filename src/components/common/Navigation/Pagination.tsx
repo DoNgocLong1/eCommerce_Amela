@@ -7,7 +7,7 @@ interface INavigation {
   totalItem: number;
   itemPerPage: number;
 }
-const PaginationBar = ({ totalItem, itemPerPage }: INavigation) => {
+const PaginationBar = ({ totalItem, itemPerPage = 12 }: INavigation) => {
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries([...searchParams]);
   const pageNumber: number = Number(params.page) || 1;

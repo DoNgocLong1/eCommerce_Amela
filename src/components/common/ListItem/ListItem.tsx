@@ -26,10 +26,18 @@ import {
 } from "./ListItem.styled";
 interface IListItem {
   data?: IProductItem[];
-  ItemPerRow?: number;
-  ItemPerRowOnMobile?: number;
+  ItemPerRow?: number | string;
+  ItemPerRowOnMobile?: number | string;
+  ItemPerRowOnTablet?: number | string;
+  size?: string;
 }
-const ListItem = ({ data, ItemPerRow }: IListItem) => {
+const ListItem = ({
+  data = [],
+  ItemPerRow = "auto-fit",
+  ItemPerRowOnMobile = "auto-fit",
+  ItemPerRowOnTablet = "auto-fit",
+  size = "minmax(25em, 1fr)",
+}: IListItem) => {
   const dispatch = useDispatch();
   const handleAddItem = (payload: any): void => {
     console.log(payload);
@@ -41,9 +49,15 @@ const ListItem = ({ data, ItemPerRow }: IListItem) => {
     };
     dispatch(addItem(payloadData));
   };
+  console.log(size);
   return (
     <Container>
-      <ListItemWrapper ItemPerRow={ItemPerRow}>
+      <ListItemWrapper
+        ItemPerRow={ItemPerRow}
+        ItemPerRowOnMobile={ItemPerRowOnMobile}
+        ItemPerRowOnTablet={ItemPerRowOnTablet}
+        size={size}
+      >
         {data?.map((item: any, index) => (
           <ItemWrapper key={index}>
             <Discount>-25%</Discount>

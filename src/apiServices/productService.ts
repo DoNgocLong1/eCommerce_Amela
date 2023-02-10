@@ -1,7 +1,6 @@
 import { instance } from "./instance";
 export const fetchProduct = async (params: any = "") => {
   const isCategory: boolean = Object.keys(params).includes("category");
-  console.log(isCategory);
   if (isCategory) {
     const data = await instance
       .post("category", { id: params.category })
@@ -12,7 +11,7 @@ export const fetchProduct = async (params: any = "") => {
     return data;
   }
   const data = await instance
-    .get(`products/filter`, { params: params })
+    .get(`products`, { params: params })
     .then((response) => response)
     .catch((error) => {
       console.log(error);
@@ -21,7 +20,7 @@ export const fetchProduct = async (params: any = "") => {
 };
 export const listProduct = async () => {
   const data = await instance
-    .get(`products`)
+    .get("products")
     .then((response) => response)
     .catch((error) => {
       console.log(error);

@@ -9,13 +9,37 @@ export const Container = styled.div`
     font-size: 6px;
   }
 `;
-export const ListItemWrapper = styled.div`
+/* export const ListItemWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25em, 25em));
   row-gap: 2em;
   column-gap: 2em;
   @media ${breakPoints.mobile} {
     grid-template-columns: repeat(2, minmax(25em, 1fr));
+  }
+`; */
+export const ListItemWrapper = styled.div`
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(
+    ${(props: { ItemPerRow: number | string }) => props.ItemPerRow},
+    ${(props: { size: string }) => props.size}
+  );
+  row-gap: 2em;
+  column-gap: 2em;
+  @media ${breakPoints.tablet} {
+    grid-template-columns: repeat(
+      ${(props: { ItemPerRowOnTablet: number | string }) =>
+        props.ItemPerRowOnTablet},
+      ${(props: { size: string }) => props.size}
+    );
+  }
+  @media ${breakPoints.mobile} {
+    grid-template-columns: repeat(
+      ${(props: { ItemPerRowOnMobile: number | string }) =>
+        props.ItemPerRowOnMobile},
+      ${(props: { size: string }) => props.size}
+    );
   }
 `;
 export const ProductActionWrapper = styled.ul`
@@ -58,7 +82,8 @@ export const ItemImageWrapper = styled.div`
   }
 `;
 export const ItemImage = styled.img`
-  height: 17em;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   transition: ease 0.25s;
 `;
