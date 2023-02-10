@@ -47,10 +47,10 @@ export const SideBarContainer = styled.div`
     height: 100%;
     flex: unset;
     position: fixed;
-    top: 7em;
+    top: 5em;
     left: 0;
     z-index: 90;
-    transform: ${(props: any) =>
+    transform: ${(props: { isShow: boolean }) =>
       props.isShow ? "translateX(0)" : "translateX(-100%)"};
   }
 `;
@@ -73,7 +73,8 @@ export const SideBar = styled.div`
 export const Overlay = styled.div`
   display: none;
   @media ${breakPoints.mobile} {
-    display: ${(props: any) => (props.isShow ? "block" : "none")};
+    display: ${(props: { isShow: boolean }) =>
+      props.isShow ? "block" : "none"};
     position: fixed;
     top: 0;
     left: 0;

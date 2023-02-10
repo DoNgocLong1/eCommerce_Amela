@@ -54,6 +54,9 @@ export const AccountContainer = styled.div`
     color: ${color.whiteColor};
     min-width: 10em;
   }
+  .ant-input-disabled {
+    color: ${color.whiteColor};
+  }
 `;
 export const UploadAvatar = styled.div`
   display: flex;

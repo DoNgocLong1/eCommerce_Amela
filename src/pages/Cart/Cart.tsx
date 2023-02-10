@@ -10,7 +10,6 @@ import {
   CartContainer,
   CartWrapper,
   Container,
-  EmptyContainer,
   GotoProductPage,
   ItemName,
   ItemTh,
@@ -35,24 +34,20 @@ import {
   TitleTr,
   TitleWrapper,
 } from "./Cart.styled";
-import { Empty } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-
-const EmptyCart = () => {
-  return (
-    <EmptyContainer>
-      <Empty description="Your Cart is empty" />
-      <Link to="/product">
-        <GotoProductPage>Continues Shopping</GotoProductPage>
-      </Link>
-    </EmptyContainer>
-  );
-};
-
+import EmptyCart from "components/common/EmptyCart/EmptyCart";
 const Cart = () => {
   const { cartList, totalPrice } = useSelector(selectCartList);
   console.log(cartList);
-  if (cartList.length === 0) return <EmptyCart />;
+  if (cartList.length === 0)
+    return (
+      <Container>
+        <EmptyCart />
+        <Link to="/product">
+          <GotoProductPage>Continues Shopping</GotoProductPage>
+        </Link>
+      </Container>
+    );
   return (
     <Container>
       <CartBannerWrapper>

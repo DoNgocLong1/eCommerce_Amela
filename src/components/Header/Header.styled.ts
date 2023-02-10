@@ -25,9 +25,14 @@ export const Container = styled.nav`
   }
 `;
 export const LogoWrapper = styled.div`
-  flex: 1;
+  display: none;
   @media ${breakPoints.mobile} {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.3em;
+    padding: 0 1em;
+    color: ${color.whiteColor};
   }
 `;
 export const Logo = styled.img`
@@ -35,6 +40,9 @@ export const Logo = styled.img`
   object-fit: cover;
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(213deg)
     brightness(105%) contrast(101%);
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 export const SearchWrapper = styled.div`
   flex: 3;
@@ -43,7 +51,7 @@ export const SearchWrapper = styled.div`
 `;
 export const FeatureWrapper = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   color: ${color.whiteColor};
   font-size: 1.7em;

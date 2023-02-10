@@ -1,5 +1,6 @@
 import color from "utils/color";
 import styled from "styled-components";
+import breakPoints from "constants/breakpoint";
 export const Container = styled.div`
   width: 100%;
   display: flex;
@@ -8,6 +9,9 @@ export const Container = styled.div`
   align-items: center;
   background-color: ${color.footerColor};
   padding: 1em;
+  @media ${breakPoints.mobile} {
+    font-size: 8px;
+  }
 `;
 export const Wrapper = styled.div`
   width: 100%;
@@ -20,6 +24,11 @@ export const Wrapper = styled.div`
 export const BrandWrapper = styled(Wrapper)`
   flex-wrap: wrap;
 `;
+export const BrandImgWrapper = styled.div`
+  @media ${breakPoints.mobile} {
+    flex-basis: 45%;
+  }
+`;
 export const BrandImg = styled.img`
   width: 25em;
   object-fit: cover;
@@ -28,6 +37,9 @@ export const BrandImg = styled.img`
   &:hover {
     filter: invert(100%) sepia(33%) saturate(3653%) hue-rotate(173deg)
       brightness(123%) contrast(105%);
+  }
+  @media ${breakPoints.mobile} {
+    width: 15em;
   }
 `;
 export const Stick = styled.hr`

@@ -1,5 +1,5 @@
 import {
-  HeartOutlined,
+  HomeOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -35,7 +35,7 @@ const Logout = () => {
     await instance
       .post("logout", config)
       .then((res) => {
-        localStorage.removeItem("token");
+        /* localStorage.removeItem("token"); */
         console.log(res);
       })
       .catch((err) => {
@@ -59,20 +59,15 @@ const Header = () => {
   return (
     <Container>
       <Link to="/">
+        <Logo src={images.logo} />
         <LogoWrapper>
-          <Logo src={images.logo} />
+          <HomeOutlined />
         </LogoWrapper>
       </Link>
       <SearchWrapper>
         <SearchItem />
       </SearchWrapper>
       <FeatureWrapper>
-        <Feature>
-          <IconWrapper>
-            <HeartOutlined />
-          </IconWrapper>
-          <FeatureTitle>Wishlist</FeatureTitle>
-        </Feature>
         <Feature>
           <IconWrapper
             onClick={() => {
