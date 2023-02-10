@@ -20,10 +20,15 @@ export const Container = styled.nav`
   }
   @media ${breakPoints.mobile} {
     font-size: 8px;
+    padding: 0.5em;
+    gap: 0.5em;
   }
 `;
 export const LogoWrapper = styled.div`
   flex: 1;
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 export const Logo = styled.img`
   width: 14em;
@@ -33,6 +38,8 @@ export const Logo = styled.img`
 `;
 export const SearchWrapper = styled.div`
   flex: 3;
+  display: flex;
+  justify-content: center;
 `;
 export const FeatureWrapper = styled.ul`
   display: flex;
@@ -42,6 +49,9 @@ export const FeatureWrapper = styled.ul`
   font-size: 1.7em;
   gap: 1.3em;
   flex: 1;
+  @media ${breakPoints.mobile} {
+    gap: 0.5em;
+  }
 `;
 export const Feature = styled.li`
   position: relative;
@@ -55,15 +65,29 @@ export const Feature = styled.li`
     align-items: center;
   }
 `;
+export const FeatureTitle = styled.div`
+  font-size: 1.2em;
+  color: ${color.whiteColor};
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
+`;
 export const UserImg = styled.img`
   width: 2.5em;
   height: 2.5em;
   object-fit: cover;
   border-radius: 50%;
+  @media ${breakPoints.mobile} {
+    width: 1.5em;
+    height: 1.5em;
+  }
 `;
 export const IconWrapper = styled.div`
   font-size: 1.8em;
   cursor: pointer;
+  @media ${breakPoints.mobile} {
+    font-size: 1.5em;
+  }
 `;
 export const FeatureLink = styled(Link)`
   color: inherit;
@@ -77,6 +101,10 @@ export const QuantitySpan = styled.div`
   border-radius: 50%;
   top: -0.5em;
   left: 1em;
+  @media ${breakPoints.mobile} {
+    top: -0.5em;
+    left: 0.7em;
+  }
 `;
 export const Quantity = styled.span`
   color: ${color.whiteColor};

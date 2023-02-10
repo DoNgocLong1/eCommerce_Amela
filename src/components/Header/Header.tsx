@@ -15,9 +15,11 @@ import {
   Container,
   Feature,
   FeatureLink,
+  FeatureTitle,
   FeatureWrapper,
   IconWrapper,
   Logo,
+  LogoWrapper,
   Quantity,
   QuantitySpan,
   SearchWrapper,
@@ -57,7 +59,9 @@ const Header = () => {
   return (
     <Container>
       <Link to="/">
-        <Logo src={images.logo} />
+        <LogoWrapper>
+          <Logo src={images.logo} />
+        </LogoWrapper>
       </Link>
       <SearchWrapper>
         <SearchItem />
@@ -67,7 +71,7 @@ const Header = () => {
           <IconWrapper>
             <HeartOutlined />
           </IconWrapper>
-          Wishlist
+          <FeatureTitle>Wishlist</FeatureTitle>
         </Feature>
         <Feature>
           <IconWrapper
@@ -77,7 +81,7 @@ const Header = () => {
           >
             <ShoppingCartOutlined />
           </IconWrapper>
-          Cart
+          <FeatureTitle>Cart</FeatureTitle>
           <QuantitySpan>
             <Quantity>{listLength}</Quantity>
           </QuantitySpan>
@@ -91,7 +95,7 @@ const Header = () => {
               <IconWrapper>
                 <UserOutlined />
               </IconWrapper>
-              Login
+              <FeatureTitle>Login</FeatureTitle>
             </Feature>
           </FeatureLink>
         )}
