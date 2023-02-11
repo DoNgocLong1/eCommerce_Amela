@@ -23,13 +23,30 @@ import {
   ShopNowButton,
 } from "./Home.styled";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import {
+  createSearchParams,
+  Link,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { IdataCategory } from "types/productType.type";
 import useCategory from "hooks/useCategory";
 import useProduct from "hooks/useProduct";
 const Home = () => {
   const categoryData: IdataCategory[] = useCategory();
   const { popularProductData } = useProduct();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries([...searchParams]);
+  const handleGotoProductByCategory = (id: string) => {
+    navigate({
+      pathname: "/product",
+      search: createSearchParams({
+        ...params,
+        category: String(id),
+      }).toString(),
+    });
+  };
   return (
     <Container>
       <Slideshow />
@@ -81,7 +98,10 @@ const Home = () => {
         <BrowserCategoriesTitle>Browser categories</BrowserCategoriesTitle>
         <CategoriesWrapper>
           {categoryData?.map((item: IdataCategory, index: number) => (
-            <CategoryItem key={index}>
+            <CategoryItem
+              key={index}
+              onClick={() => handleGotoProductByCategory(item.id)}
+            >
               <CategoryTitle>{item.name}</CategoryTitle>
               <CategoryItemImgWrapper>
                 <CategoryItemImg src={item.category_img} alt={item.name} />

@@ -1,3 +1,4 @@
+import breakPoints from "constants/breakpoint";
 import styled from "styled-components";
 import color from "utils/color";
 export const Container = styled.div`
@@ -6,6 +7,17 @@ export const Container = styled.div`
   justify-content: center;
   padding: 2em;
   gap: 8em;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+    font-size: 8px;
+    align-items: center;
+    gap: 2em;
+  }
+  @media ${breakPoints.tablet} {
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
 `;
 export const Sidebar = styled.div`
   background-color: transparent;
@@ -46,6 +58,7 @@ export const AccountContainer = styled.div`
   gap: 5em;
   padding: 2em 5em;
   align-items: flex-start;
+  width: fit-content;
   background-color: ${color.backgroundItemColor};
   .ant-input {
     width: 30em;
@@ -56,6 +69,23 @@ export const AccountContainer = styled.div`
   }
   .ant-input-disabled {
     color: ${color.whiteColor};
+  }
+  .ant-col {
+    width: fit-content;
+  }
+  @media ${breakPoints.mobile} {
+    padding: 2em 2em;
+    .ant-input {
+      width: 100%;
+    }
+    .ant-form-item-label label {
+      min-width: unset;
+    }
+  }
+  @media ${breakPoints.tablet} {
+    .ant-input {
+      width: 20em;
+    }
   }
 `;
 export const UploadAvatar = styled.div`

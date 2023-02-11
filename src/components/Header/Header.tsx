@@ -1,16 +1,18 @@
 import {
+  AliwangwangOutlined,
+  ExportOutlined,
   HomeOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { instance } from "apiServices/instance";
 import images from "assets/images";
+import ListItemLite from "components/common/ListItemLite/ListItemLite";
 import PropDown from "components/common/PropDown/PropDown";
 import SearchItem from "components/common/SearchItem/SearchItem";
 import { selectCartList } from "features/cart/cartSlice";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Feature,
@@ -23,33 +25,54 @@ import {
   Quantity,
   QuantitySpan,
   SearchWrapper,
+  UserFeature,
+  UserFeatureIcon,
+  UserFeatureName,
+  UserFeatureWrapper,
   UserImg,
 } from "./Header.styled";
 const Logout = () => {
+  const navigate = useNavigate();
   const handleLogout = async () => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    };
-    await instance
-      .post("logout", config)
-      .then((res) => {
-        /* localStorage.removeItem("token"); */
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    localStorage.removeItem("token");
+    navigate("/");
   };
+  const [show, setShow] = useState<boolean>(false);
   const user = localStorage.getItem("user");
   const userAvatar = JSON.parse(user || "").user_img;
   return (
-    <Link to="/account">
-      <Feature onClick={handleLogout}>
-        <UserImg src={userAvatar} />
-      </Feature>
-    </Link>
+    <Feature>
+      <UserImg
+        src={userAvatar}
+        onClick={() => {
+          setShow((prev) => (prev ? false : true));
+        }}
+      />
+      <PropDown isShow={show} translateX="-55%">
+        <UserFeature>
+          <Link to="/account">
+            <UserFeatureWrapper>
+              <UserFeatureIcon>
+                <UserOutlined />
+              </UserFeatureIcon>
+              <UserFeatureName>Profile</UserFeatureName>
+            </UserFeatureWrapper>
+          </Link>
+          <UserFeatureWrapper>
+            <UserFeatureIcon>
+              <ExportOutlined />
+            </UserFeatureIcon>
+            <UserFeatureName onClick={handleLogout}>Logout</UserFeatureName>
+          </UserFeatureWrapper>
+          <UserFeatureWrapper>
+            <UserFeatureIcon>
+              <AliwangwangOutlined />
+            </UserFeatureIcon>
+            <UserFeatureName>Change password</UserFeatureName>
+          </UserFeatureWrapper>
+        </UserFeature>
+      </PropDown>
+    </Feature>
   );
 };
 const Header = () => {
@@ -80,7 +103,9 @@ const Header = () => {
           <QuantitySpan>
             <Quantity>{listLength}</Quantity>
           </QuantitySpan>
-          <PropDown isShow={show} />
+          <PropDown isShow={show} translateX="-70%">
+            <ListItemLite />
+          </PropDown>
         </Feature>
         {token ? (
           <Logout />

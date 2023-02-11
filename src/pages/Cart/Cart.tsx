@@ -101,7 +101,9 @@ const Cart = () => {
             <SubTotalTitle>Subtotal:</SubTotalTitle>
             <SubTotal>{totalPrice} $</SubTotal>
           </SubTotalWrapper>
-          <PaymentButton>Payment</PaymentButton>
+          <Link to="/payment">
+            <PaymentButton>Payment</PaymentButton>
+          </Link>
         </NoteWrapper>
       </CartContainer>
       <Link to="/product">

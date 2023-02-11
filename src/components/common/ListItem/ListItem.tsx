@@ -1,4 +1,5 @@
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+//import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
 import { addItem } from "features/cart/cartSlice";
 import React from "react";
@@ -19,8 +20,8 @@ import {
   ItemType,
   ItemWrapper,
   ListItemWrapper,
-  ProductAction,
-  ProductActionWrapper,
+  /* ProductAction,
+  ProductActionWrapper, */
   RateNumber,
   RateWrapper,
 } from "./ListItem.styled";
@@ -75,13 +76,13 @@ const ListItem = ({
                 src={item.images[0]?.product_img}
                 alt={item.name}
               />
-              <ProductActionWrapper>
+              {/* <ProductActionWrapper>
                 <ProductAction>
                   <HeartOutlined style={{ fontSize: "3em", color: "orange" }} />
                 </ProductAction>
                 <ProductAction></ProductAction>
                 <ProductAction></ProductAction>
-              </ProductActionWrapper>
+              </ProductActionWrapper> */}
             </ItemImageWrapper>
             <ItemType>{item.type}</ItemType>
             <ItemName onClick={() => goToProductDetailPage(item.id)}>
