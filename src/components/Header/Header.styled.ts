@@ -66,6 +66,7 @@ export const Feature = styled.li`
   display: flex;
   align-items: center;
   gap: 0.7em;
+  height: 100%;
   cursor: pointer;
   span {
     display: flex;
@@ -117,4 +118,33 @@ export const QuantitySpan = styled.div`
 export const Quantity = styled.span`
   color: ${color.whiteColor};
   font-size: 0.8em;
+`;
+export const UserFeature = styled.div`
+  background-color: #242526;
+  width: 100%;
+  padding: 0.5em;
+  a {
+    color: ${color.whiteColor};
+    text-decoration: none;
+  }
+`;
+export const UserFeatureWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  color: ${color.whiteColor};
+  transition: 0.25s ease;
+  border-radius: 0.3em;
+  :hover {
+    background-color: ${color.backgroundColor};
+  }
+`;
+export const UserFeatureIcon = styled.div`
+  font-size: 1.3em;
+`;
+export const UserFeatureName = styled.div`
+  font-size: 1em;
+  white-space: nowrap;
 `;

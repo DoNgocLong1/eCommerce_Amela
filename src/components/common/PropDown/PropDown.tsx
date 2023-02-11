@@ -1,102 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {
-  Container,
-  ItemDetailName,
-  ItemDetailPrice,
-  ItemDetailQuantity,
-  ItemDetailWrapper,
-  ItemFooter,
-  ItemFooterButton,
-  ItemFooterContent,
-  ItemFooterTitle,
-  ItemFooterWrapper,
-  ItemImg,
-  PropDownItemWrapper,
-  PropDownListItemWrapper,
-  PropDownTitle,
-  QuantityButton,
-  QuantityWrapper,
-  RemoveButton,
-} from "./PropDown.styled";
-import { CloseOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import useCart from "hooks/useCart";
-import EmptyCart from "../EmptyCart/EmptyCart";
+import { Container } from "./PropDown.styled";
+
 interface IPropDown {
+  children: React.ReactNode;
   isShow: boolean;
+  translateX: string;
 }
-const PropDown = ({ isShow }: IPropDown) => {
-  const {
-    handleAddItem,
-    handleDecreaseItem,
-    handleRemove,
-    cartList,
-    orderList,
-    totalPrice,
-  } = useCart();
-  console.log(orderList);
-  const onOrder = async () => {
-    console.log("first");
-    /* const params: any = {
-      user_id: 1,
-      amount: totalPrice,
-      obj: orderList,
-    };
-    const config = {
-      headers: {
-        "Content-Type": `application/json`,
-      },
-    };
-    await instance
-      .post("order", JSON.stringify(params), config)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      }); */
-  };
+const PropDown = ({ children, isShow, translateX = "70%" }: IPropDown) => {
+  console.log(isShow);
   return (
-    <Container isShow={isShow}>
-      <PropDownTitle>Your cart</PropDownTitle>
-      <PropDownListItemWrapper>
-        {cartList.length === 0 ? (
-          <EmptyCart />
-        ) : (
-          cartList.map((item, index) => (
-            <PropDownItemWrapper key={index}>
-              <RemoveButton onClick={() => handleRemove(item)}>
-                <CloseOutlined />
-              </RemoveButton>
-              <ItemImg src={item.img} />
-              <ItemDetailWrapper>
-                <ItemDetailName>{item.name}</ItemDetailName>
-                <QuantityWrapper>
-                  <QuantityButton onClick={() => handleAddItem(item)}>
-                    <PlusOutlined />
-                  </QuantityButton>
-                  <ItemDetailQuantity>{item.count} x</ItemDetailQuantity>
-                  <QuantityButton onClick={() => handleDecreaseItem(item)}>
-                    <MinusOutlined />
-                  </QuantityButton>
-                </QuantityWrapper>
-                <ItemDetailPrice>
-                  {item.price * Number(item.count)}$
-                </ItemDetailPrice>
-              </ItemDetailWrapper>
-            </PropDownItemWrapper>
-          ))
-        )}
-      </PropDownListItemWrapper>
-      <ItemFooter>
-        <ItemFooterWrapper>
-          <ItemFooterTitle>Total: </ItemFooterTitle>
-          <ItemFooterContent> {totalPrice}$</ItemFooterContent>
-        </ItemFooterWrapper>
-        <Link to="/cart">
-          <ItemFooterButton onClick={onOrder}>View cart</ItemFooterButton>
-        </Link>
-      </ItemFooter>
+    <Container isShow={isShow} translateX={translateX}>
+      {children}
     </Container>
   );
 };

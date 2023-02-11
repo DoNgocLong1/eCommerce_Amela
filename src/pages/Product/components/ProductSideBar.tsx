@@ -65,13 +65,13 @@ const ProductSideBar = () => {
         <SideBarButton onClick={() => transmissionParams("price", "increase")}>
           <RiseOutlined /> Increase
         </SideBarButton>,
-        "3"
+        "5"
       ),
       getItem(
         <SideBarButton onClick={() => transmissionParams("price", "decrease")}>
           <FallOutlined /> Decrease
         </SideBarButton>,
-        "4"
+        "6"
       ),
       getItem(
         <Slider
@@ -83,7 +83,7 @@ const ProductSideBar = () => {
             twoKeysTransmissionParams("price_from", e[0], "price_to", e[1])
           }
         />,
-        "6"
+        "7"
       ),
     ]),
   ];

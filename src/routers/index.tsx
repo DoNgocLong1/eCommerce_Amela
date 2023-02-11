@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectAuth } from "features/auth/authSlice";
-/* import { Outlet, Navigate } from "react-router-dom"; */
+import { Outlet, Navigate } from "react-router-dom";
 import Login from "pages/Login/Login";
 import Home from "pages/Home/Home";
 import DefaultLayout from "Layout/DefaultLayout/DefaultLayout";
@@ -11,6 +11,7 @@ import Product from "pages/Product/Product";
 import ProductDetail from "pages/ProductDetail/ProductDetail";
 import Cart from "pages/Cart/Cart";
 import Account from "pages/Account/Account";
+import Payment from "pages/Payment/Payment";
 const Routers = () => {
   const state = useSelector(selectAuth);
   console.log("auth state", state);
@@ -19,10 +20,10 @@ const Routers = () => {
     return <Outlet />;
     // return isAuthenticated ? <Outlet /> : <Navigate to={pathRoutes.login} />;
   }; */
-  /*   const token = localStorage.getItem("token");
   const RejectedRoute = () => {
-    return token ? <Outlet /> : <Navigate to="/" />;
-  }; */
+    const token = localStorage.getItem("token");
+    return token ? <Outlet /> : <Navigate to="/login" />;
+  };
   const elements = useRoutes([
     {
       path: "/login",
@@ -72,16 +73,16 @@ const Routers = () => {
       path: "/registry",
       element: <Registry />,
     },
-    /* {
-      path: "/login",
+    {
+      path: "/payment",
       element: <RejectedRoute />,
       children: [
         {
-          path: "/login",
-          element: <Login />,
+          path: "/payment",
+          element: <Payment />,
         },
       ],
-    }, */
+    },
   ]);
 
   return elements;

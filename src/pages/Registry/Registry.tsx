@@ -1,4 +1,4 @@
-import React /* { useEffect } */ from "react";
+import React from "react";
 import { Button, Form, Input } from "antd";
 import {
   Container,
@@ -6,13 +6,17 @@ import {
   RegistryTitle,
   ButtonWrapper,
 } from "./Registry.styled";
-/* import * as searchService from "apiServices/searchService"; */
 import { UserOutlined } from "@ant-design/icons";
-import { LockOutlined } from "@ant-design/icons/lib/icons";
+import {
+  CopyOutlined,
+  DingdingOutlined,
+  LockOutlined,
+} from "@ant-design/icons/lib/icons";
 import { useNavigate } from "react-router-dom";
 import { instance } from "apiServices/instance";
 const Registry = () => {
   const navigate = useNavigate();
+  /* const [error, setError] = useState<string[]>([]); */
   const onFinish = async (values: any) => {
     const registryData = {
       name: values.fullname,
@@ -28,7 +32,8 @@ const Registry = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        const errorValues = Object.values(error.response.data.data.messages);
+        console.log(errorValues);
       });
   };
 
@@ -52,19 +57,26 @@ const Registry = () => {
             name="fullname"
             rules={[
               { required: true, message: "Please input your full name!" },
+              { max: 200, message: "Please input less than 200 characters" },
             ]}
           >
-            <Input prefix={<UserOutlined />} placeholder="Full name" />
+            <Input prefix={<DingdingOutlined />} placeholder="Full name" />
           </Form.Item>
           <Form.Item
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              { required: true, message: "Please input your username!" },
+              { max: 200, message: "Please input less than 200 characters" },
+            ]}
           >
             <Input prefix={<UserOutlined />} placeholder="Username" />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              { required: true, message: "Please input your password!" },
+              { max: 200, message: "Please input less than 200 characters" },
+            ]}
           >
             <Input.Password prefix={<LockOutlined />} placeholder="Password" />
           </Form.Item>
@@ -75,7 +87,7 @@ const Registry = () => {
             ]}
           >
             <Input.Password
-              prefix={<LockOutlined />}
+              prefix={<CopyOutlined />}
               placeholder="Retype password"
             />
           </Form.Item>

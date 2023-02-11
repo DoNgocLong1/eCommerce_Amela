@@ -21,22 +21,17 @@ import ListItem from "components/common/ListItem/ListItem";
 import { IdataCategory } from "types/productType.type";
 import images from "assets/images";
 import Navigation from "components/common/Navigation/Pagination";
-import { useNavigate, createSearchParams } from "react-router-dom";
 import useCategory from "hooks/useCategory";
 import useProduct from "hooks/useProduct";
 import ProductSideBar from "./components/ProductSideBar";
 import { MenuUnfoldOutlined } from "@ant-design/icons";
 import Loading from "components/common/Loading/Loading";
+import useUrlParams from "hooks/useUrlParams";
 const Product = () => {
-  const navigate = useNavigate();
+  const { transmissionParams } = useUrlParams();
   const categoryData: IdataCategory[] = useCategory();
   const handleFilter = (tag: string): void => {
-    navigate({
-      pathname: "/product",
-      search: createSearchParams({
-        category: String(tag),
-      }).toString(),
-    });
+    transmissionParams("category", tag);
   };
   const { productData, totalItem, itemPerPage, productQuery } = useProduct();
   const [showSideBar, setShowSideBar] = useState<boolean>(false);

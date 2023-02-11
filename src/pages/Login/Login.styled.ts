@@ -85,3 +85,8 @@ export const Registry = styled(ForgotPassword)`
   color: orange;
   text-decoration: none;
 `;
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 1em;
+  background-color: transparent;
+`;

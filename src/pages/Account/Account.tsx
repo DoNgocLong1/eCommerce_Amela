@@ -70,31 +70,33 @@ const Account = () => {
       </Sidebar>
       <AccountContainer>
         <Form layout="horizontal" size="large" onFinish={onFinish}>
-          <Form.Item name="username">
+          <Form.Item name="username" label="Username">
             <Input placeholder="Username" defaultValue={userData.name} />
           </Form.Item>
-          <Form.Item name="email">
+          <Form.Item name="email" label="Email">
             <Input placeholder="Email" disabled defaultValue={userData.email} />
           </Form.Item>
-          <Form.Item name="address">
+          <Form.Item name="address" label="Address">
             <Input placeholder="Address" />
           </Form.Item>
-          <Form.Item name="phoneNumber">
+          <Form.Item name="phoneNumber" label="PhoneNumber">
             <Input placeholder="Phone number" />
           </Form.Item>
-          <Form.Item name="date">
+          <Form.Item name="date" label="Date of birth">
             <DatePicker />
+          </Form.Item>
+          <Form.Item name="avatar" label="Avatar">
+            <UploadAvatar>
+              <AvatarUser src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU" />
+              <Upload {...props}>
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+              </Upload>
+            </UploadAvatar>
           </Form.Item>
           <Form.Item name="submit">
             <Button htmlType="submit">Button</Button>
           </Form.Item>
         </Form>
-        <UploadAvatar>
-          <AvatarUser src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU" />
-          <Upload {...props}>
-            <Button icon={<UploadOutlined />}>Click to Upload</Button>
-          </Upload>
-        </UploadAvatar>
       </AccountContainer>
     </Container>
   );

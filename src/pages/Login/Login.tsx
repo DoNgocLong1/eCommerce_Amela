@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import {
   Container,
@@ -8,6 +8,7 @@ import {
   ForgotPassword,
   Registry,
   ButtonWrapper,
+  ErrorMessage,
 } from "./Login.styled";
 import { UserOutlined } from "@ant-design/icons";
 import { LockOutlined } from "@ant-design/icons/lib/icons";
@@ -16,6 +17,7 @@ import { useDispatch } from "react-redux/es/exports";
 import { loginSuccess } from "features/auth/authSlice";
 import { instance } from "apiServices/instance";
 const Login = () => {
+  const [error, setError] = useState<string>("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = async (values: any) => {
@@ -35,8 +37,8 @@ const Login = () => {
         dispatch(loginSuccess(res.data.data));
         navigate("/");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        setError("username or password incorrect");
       });
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -47,21 +49,25 @@ const Login = () => {
       <LoginWrapper>
         <LoginTitle>Welcome to Predator</LoginTitle>
         <Form
-          name="basic"
-          initialValues={{ remember: true }}
+          layout="horizontal"
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
         >
           <Form.Item
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              { required: true, message: "Please input your Username!" },
+              { max: 200, message: "please input less than 200 characters" },
+            ]}
           >
             <Input prefix={<UserOutlined />} placeholder="Username" />
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              { required: true, message: "Please input your password!" },
+              { max: 200, message: "please input less than 200 characters" },
+            ]}
           >
             <Input.Password prefix={<LockOutlined />} placeholder="Password" />
           </Form.Item>
@@ -72,6 +78,7 @@ const Login = () => {
             <ForgotPassword>Forgot password</ForgotPassword>
             <Registry to="/registry">Registry</Registry>
           </LoginFeatureLogin>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
           <ButtonWrapper name="submit" wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
