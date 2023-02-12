@@ -68,6 +68,7 @@ const ListItemLite = () => {
               <ItemImg src={item.img} />
               <ItemDetailWrapper>
                 <ItemDetailName>{item.name}</ItemDetailName>
+                <ItemDetailPrice>{item.price}$/1</ItemDetailPrice>
                 <QuantityWrapper>
                   <QuantityButton onClick={() => handleAddItem(item)}>
                     <PlusOutlined />
@@ -77,9 +78,7 @@ const ListItemLite = () => {
                     <MinusOutlined />
                   </QuantityButton>
                 </QuantityWrapper>
-                <ItemDetailPrice>
-                  {item.price * Number(item.count)}$
-                </ItemDetailPrice>
+                <ItemDetailPrice>{item.total} $</ItemDetailPrice>
               </ItemDetailWrapper>
             </PropDownItemWrapper>
           ))

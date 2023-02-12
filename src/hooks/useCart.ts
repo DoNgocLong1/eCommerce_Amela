@@ -4,7 +4,7 @@ import { selectCartList } from "features/cart/cartSlice";
 import { useSelector } from "react-redux";
 import { CartItemType } from "types/cartType.type";
 const useCart = () => {
-  const { cartList, totalPrice } = useSelector(selectCartList);
+  const { cartList, totalPrice, listLength } = useSelector(selectCartList);
   const dispatch = useDispatch();
   const handleAddItem = (payload: any): void => {
     console.log(payload);
@@ -51,6 +51,7 @@ const useCart = () => {
     cartList,
     orderList,
     totalPrice,
+    listLength,
   };
 };
 export default useCart;

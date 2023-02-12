@@ -16,29 +16,24 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state: IInitialState, action: PayloadAction<ICartList>) {
-      console.log(action.payload);
-      state.listLength++;
       const existingItem: any = state.cartList.find((cart: ICartList) => {
         return cart.id === action.payload.id;
       });
       if (!existingItem) {
-        console.log("add item");
         const newItem = {
           ...action.payload,
           count: 1,
           total: action.payload.price,
         };
         state.cartList = [newItem, ...state.cartList];
-        state.totalPrice += action.payload.price;
       } else {
-        console.log("increase");
         existingItem.count++;
         existingItem.total += action.payload.price;
-        state.totalPrice += action.payload.price;
       }
+      state.totalPrice += action.payload.price;
+      state.listLength++;
     },
     removeItem(state: IInitialState, action: PayloadAction<ICartList>) {
-      console.log(action.payload);
       const removeItem: any = state.cartList.find((cart: ICartList) => {
         return cart.id === action.payload.id;
       });
@@ -50,12 +45,13 @@ const cartSlice = createSlice({
       const existingItem: any = state.cartList.find((cart: ICartList) => {
         return cart.id === action.payload.id;
       });
-      existingItem.count--;
       if (existingItem.count === 0) {
         state.cartList.splice(state.cartList.indexOf(existingItem), 1);
       }
+      existingItem.count--;
+      existingItem.total -= action.payload.price;
       state.listLength--;
-      state.totalPrice -= action.payload.price;
+      state.totalPrice -= existingItem.price;
     },
   },
 });

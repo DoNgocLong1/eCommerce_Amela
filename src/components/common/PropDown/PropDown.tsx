@@ -7,7 +7,6 @@ interface IPropDown {
   translateX: string;
 }
 const PropDown = ({ children, isShow, translateX = "70%" }: IPropDown) => {
-  console.log(isShow);
   return (
     <Container isShow={isShow} translateX={translateX}>
       {children}
