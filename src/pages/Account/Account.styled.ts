@@ -22,8 +22,22 @@ export const Container = styled.div`
 export const Sidebar = styled.div`
   background-color: transparent;
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
   padding: 1em;
+  flex-direction: column;
+  gap: 2em;
+`;
+export const FeatureWrapper = styled.div`
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: fit-content;
+`;
+export const Feature = styled.p`
+  color: ${color.whiteColor};
+  font-size: 1.5em;
+  cursor: pointer;
 `;
 export const SidebarContainer = styled.div`
   display: flex;
@@ -65,7 +79,7 @@ export const AccountContainer = styled.div`
   }
   .ant-form-item-label label {
     color: ${color.whiteColor};
-    min-width: 10em;
+    min-width: 12em;
   }
   .ant-input-disabled {
     color: ${color.whiteColor};

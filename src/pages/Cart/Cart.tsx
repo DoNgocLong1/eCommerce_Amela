@@ -1,7 +1,5 @@
 import images from "assets/images";
-import { selectCartList } from "features/cart/cartSlice";
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Banner,
@@ -23,6 +21,8 @@ import {
   ProductName,
   ProductNameAndImgWrapper,
   ProductQuantity,
+  ProductQuantityButton,
+  ProductQuantityButtonWrapper,
   ProductRemove,
   ProductTotal,
   ProductUnitPrice,
@@ -36,9 +36,16 @@ import {
 } from "./Cart.styled";
 import { DeleteOutlined } from "@ant-design/icons";
 import EmptyCart from "components/common/EmptyCart/EmptyCart";
+import useCart from "hooks/useCart";
+import { ICartList } from "types/cartType.type";
 const Cart = () => {
-  const { cartList, totalPrice } = useSelector(selectCartList);
-  console.log(cartList);
+  const {
+    handleAddItem,
+    handleDecreaseItem,
+    handleRemove,
+    cartList,
+    totalPrice,
+  } = useCart();
   if (cartList.length === 0)
     return (
       <Container>
@@ -66,7 +73,7 @@ const Cart = () => {
             </TitleTr>
           </TitleWrapper>
           <ItemWrapper>
-            {cartList.map((item, index) => (
+            {cartList.map((item: ICartList, index: number) => (
               <ItemTr key={index}>
                 <ItemName>
                   <ProductNameAndImgWrapper>
@@ -78,15 +85,27 @@ const Cart = () => {
                   <ProductUnitPrice>{item.price} $</ProductUnitPrice>
                 </ItemTh>
                 <ItemTh>
-                  <ProductQuantity>{item.count}</ProductQuantity>
+                  <ProductQuantity>
+                    {item.count}
+                    <ProductQuantityButtonWrapper>
+                      <ProductQuantityButton
+                        onClick={() => handleAddItem(item)}
+                      >
+                        +
+                      </ProductQuantityButton>
+                      <ProductQuantityButton
+                        onClick={() => handleDecreaseItem(item)}
+                      >
+                        -
+                      </ProductQuantityButton>
+                    </ProductQuantityButtonWrapper>
+                  </ProductQuantity>
                 </ItemTh>
                 <ItemTh>
-                  <ProductTotal>
-                    {item.price * Number(item.count)} $
-                  </ProductTotal>
+                  <ProductTotal>{item.total} $</ProductTotal>
                 </ItemTh>
                 <ItemTh>
-                  <ProductRemove>
+                  <ProductRemove onClick={() => handleRemove(item)}>
                     <DeleteOutlined />
                   </ProductRemove>
                 </ItemTh>

@@ -1,6 +1,6 @@
 import {
-  AliwangwangOutlined,
   ExportOutlined,
+  HistoryOutlined,
   HomeOutlined,
   ShoppingCartOutlined,
   UserOutlined,
@@ -66,9 +66,9 @@ const Logout = () => {
           </UserFeatureWrapper>
           <UserFeatureWrapper>
             <UserFeatureIcon>
-              <AliwangwangOutlined />
+              <HistoryOutlined />
             </UserFeatureIcon>
-            <UserFeatureName>Change password</UserFeatureName>
+            <UserFeatureName>Orders history </UserFeatureName>
           </UserFeatureWrapper>
         </UserFeature>
       </PropDown>

@@ -102,7 +102,31 @@ export const ProductImg = styled.img`
   object-fit: cover;
 `;
 export const ProductUnitPrice = styled(ProductName)``;
-export const ProductQuantity = styled(ProductName)``;
+export const ProductQuantity = styled(ProductName)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const ProductQuantityButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const ProductQuantityButton = styled.button`
+  font-size: 1em;
+  height: 1em;
+  width: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid ${color.whiteColor};
+  color: ${color.whiteColor};
+  transition: 0.25s ease;
+  :hover {
+    color: #000;
+    background-color: ${color.whiteColor};
+  }
+`;
 export const ProductTotal = styled(ProductName)``;
 export const ProductRemove = styled(ProductName)`
   cursor: pointer;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import {
   Container,
   RegistryWrapper,
   RegistryTitle,
   ButtonWrapper,
+  ErrorMessage,
 } from "./Registry.styled";
 import { UserOutlined } from "@ant-design/icons";
 import {
@@ -16,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { instance } from "apiServices/instance";
 const Registry = () => {
   const navigate = useNavigate();
-  /* const [error, setError] = useState<string[]>([]); */
+  const [error, setError] = useState<string[]>([]);
   const onFinish = async (values: any) => {
     const registryData = {
       name: values.fullname,
@@ -33,13 +34,18 @@ const Registry = () => {
       })
       .catch((error) => {
         const errorValues = Object.values(error.response.data.data.messages);
-        console.log(errorValues);
+        const Errors: any = errorValues.reduce(
+          (errArray: any, currentError) => errArray.concat(currentError),
+          []
+        );
+        setError(Errors);
       });
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+  console.log(error);
   return (
     <Container>
       <RegistryWrapper>
@@ -91,6 +97,7 @@ const Registry = () => {
               placeholder="Retype password"
             />
           </Form.Item>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
           <ButtonWrapper name="submit" wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit

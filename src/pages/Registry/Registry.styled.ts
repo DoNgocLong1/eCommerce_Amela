@@ -57,3 +57,8 @@ export const RegistryTitle = styled.h1`
   font-size: 2em;
   color: #000;
 `;
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 1em;
+  background-color: transparent;
+`;
