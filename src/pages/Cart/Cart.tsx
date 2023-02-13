@@ -75,7 +75,7 @@ const Cart = () => {
       });
     setAppearSuccess(true);
   };
-  if (cartList.length)
+  if (!cartList.length)
     return (
       <Container>
         <EmptyCart />
