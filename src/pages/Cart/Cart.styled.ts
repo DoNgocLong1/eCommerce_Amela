@@ -1,3 +1,4 @@
+import breakPoints from "constants/breakpoint";
 import color from "utils/color";
 import styled from "styled-components";
 export const Container = styled.div`
@@ -16,6 +17,9 @@ export const CartBannerWrapper = styled.div`
   display: flex;
   align-items: center;
   overflow: hidden;
+  @media ${breakPoints.mobile} {
+    display: none;
+  }
 `;
 export const Banner = styled.img`
   width: 100%;
@@ -32,6 +36,12 @@ export const CartContainer = styled.div`
   gap: 2em;
   width: 100%;
   padding: 2em;
+  @media ${breakPoints.mobile} {
+    flex-direction: column;
+  }
+  @media ${breakPoints.tablet} {
+    flex-direction: column;
+  }
 `;
 export const CartWrapper = styled.div`
   flex: 4;
@@ -49,6 +59,9 @@ export const TitleWrapper = styled.thead`
   justify-content: center;
   border-radius: 2em;
   overflow: hidden;
+  @media ${breakPoints.mobile} {
+    font-size: 5px;
+  }
 `;
 export const TitleTr = styled.tr`
   width: 100%;
@@ -77,6 +90,9 @@ export const ItemWrapper = styled.tbody`
   font-size: 10px;
   display: flex;
   flex-direction: column;
+  @media ${breakPoints.mobile} {
+    font-size: 5px;
+  }
 `;
 export const ItemTr = styled(TitleTr)`
   background: transparent;
@@ -137,6 +153,12 @@ export const NoteWrapper = styled.div`
   border: 1px solid #ececec;
   border-radius: 0.5em;
   background-color: ${color.backgroundItemColor};
+  @media ${breakPoints.mobile} {
+    font-size: 8px;
+    .ant-form-item input {
+      font-size: 1em;
+    }
+  }
 `;
 export const NoteTitle = styled.p`
   font-size: 1.5em;
@@ -145,12 +167,12 @@ export const NoteTitle = styled.p`
   padding: 1em 0;
 `;
 export const NoteContent = styled.textarea`
-  font-size: 1.5em;
+  font-size: 1em;
   color: #fff;
   border: none;
   outline: none;
   background-color: ${color.backgroundItemColor};
-  height: 20em;
+  height: 10em;
   width: 100%;
   padding: 0.5em;
 `;
@@ -162,17 +184,17 @@ export const SubTotalWrapper = styled.div`
   padding: 1em 0;
 `;
 export const SubTotalTitle = styled.h1`
-  font-size: 2em;
+  font-size: 1em;
   color: ${color.whiteColor};
 `;
 export const SubTotal = styled.p`
-  font-size: 2em;
+  font-size: 1em;
   color: ${color.whiteColor};
 `;
 export const PaymentButton = styled.button`
   width: 100%;
   color: ${color.whiteColor};
-  font-size: 1.5em;
+  font-size: 1em;
   background-color: rgb(59, 183, 126);
   padding: 1em;
   transition: 0.5s ease;

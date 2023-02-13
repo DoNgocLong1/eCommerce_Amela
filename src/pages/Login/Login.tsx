@@ -55,6 +55,7 @@ const Login = () => {
         >
           <Form.Item
             name="username"
+            hasFeedback
             rules={[
               { required: true, message: "Please input your Username!" },
               { max: 200, message: "please input less than 200 characters" },
@@ -64,6 +65,7 @@ const Login = () => {
           </Form.Item>
           <Form.Item
             name="password"
+            hasFeedback
             rules={[
               { required: true, message: "Please input your password!" },
               { max: 200, message: "please input less than 200 characters" },

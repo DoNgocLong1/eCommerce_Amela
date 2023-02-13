@@ -1,6 +1,8 @@
 import { Rate } from "antd";
 import { productDetail } from "apiServices/productService";
 import Loading from "components/common/Loading/Loading";
+import DOMPurify from "dompurify";
+import { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useSearchParams } from "react-router-dom";
 import {
@@ -18,29 +20,38 @@ import {
   SpecificationWrapper,
   GalleryWrapper,
   GalleryImg,
+  ProductDescription,
 } from "./ProductDetail.styled";
 
 const ProductDetail = () => {
   const [searchParams] = useSearchParams();
   const params = Object.fromEntries([...searchParams]);
+  const desRef = useRef<HTMLDivElement>();
   const { data, isLoading } = useQuery({
     queryKey: ["productDetail"],
     queryFn: () => productDetail(+params.id),
   });
   const productDetailData = data?.data.data;
+  const [img, setImg] = useState<string>(
+    productDetailData?.images[0]?.product_img
+  );
   console.log(productDetailData);
+  console.log(desRef.current);
   if (isLoading) return <Loading />;
   if (!productDetailData) return null;
   return (
     <Container>
       <ProductDetailWrapper>
         <ProductGalleryWrapper>
-          <ProductMainImg src={productDetailData?.images[0]?.product_img} />
+          <ProductMainImg src={img} />
           <GalleryWrapper>
-            <GalleryImg src={productDetailData?.images[0]?.product_img} />
-            <GalleryImg src={productDetailData?.images[0]?.product_img} />
-            <GalleryImg src={productDetailData?.images[0]?.product_img} />
-            <GalleryImg src={productDetailData?.images[0]?.product_img} />
+            {productDetailData?.images.map((item: any, index: number) => (
+              <GalleryImg
+                onMouseOver={() => setImg(item.product_img)}
+                key={index}
+                src={item.product_img}
+              />
+            ))}
           </GalleryWrapper>
         </ProductGalleryWrapper>
         <ProductInfoWrapper>
@@ -65,6 +76,12 @@ const ProductDetail = () => {
           </SpecificationsContainer>
         </ProductInfoWrapper>
       </ProductDetailWrapper>
+      <ProductDescription
+        ref={desRef}
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(productDetailData.description),
+        }}
+      ></ProductDescription>
     </Container>
   );
 };

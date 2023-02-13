@@ -119,6 +119,9 @@ export const CategoriesContainer = styled.ul`
 export const CategoryImgWarper = styled.div`
   min-width: 5em;
 `;
+export const CategoryIconWarper = styled.div`
+  font-size: 2em;
+`;
 export const CategoryImg = styled.img`
   height: 100%;
 `;

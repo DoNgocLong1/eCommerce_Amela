@@ -5,6 +5,8 @@ export const Container = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 2em 0;
+  justify-content: center;
+  align-items: center;
 `;
 export const ProductDetailWrapper = styled.div`
   display: flex;
@@ -14,12 +16,16 @@ export const ProductDetailWrapper = styled.div`
 `;
 export const ProductGalleryWrapper = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 1em;
+  align-items: center;
 `;
 export const ProductMainImg = styled.img`
   background-color: ${color.backgroundItemColor};
-  width: 45em;
+  padding: 1em;
+  width: 50%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border: 1px solid #9bae07;
   border-radius: 1em;
@@ -48,6 +54,7 @@ export const RateNumber = styled.span`
 `;
 export const ProductInfoWrapper = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
 `;
 export const ProductName = styled.h1`
@@ -76,4 +83,16 @@ export const SpecificationName = styled.p`
 `;
 export const SpecificationDetail = styled(SpecificationName)`
   opacity: 0.8;
+`;
+export const ProductDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin-top: 5em;
+  p {
+    font-size: 1.5em;
+    color: ${color.whiteColor};
+  }
 `;
