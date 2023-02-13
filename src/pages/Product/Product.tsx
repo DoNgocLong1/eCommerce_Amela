@@ -4,6 +4,7 @@ import {
   BannerTitle,
   BannerWrapper,
   CategoriesContainer,
+  CategoryIconWarper,
   CategoryImg,
   CategoryImgWarper,
   CategoryName,
@@ -24,7 +25,7 @@ import Navigation from "components/common/Navigation/Pagination";
 import useCategory from "hooks/useCategory";
 import useProduct from "hooks/useProduct";
 import ProductSideBar from "./components/ProductSideBar";
-import { MenuUnfoldOutlined } from "@ant-design/icons";
+import { MenuUnfoldOutlined, RadarChartOutlined } from "@ant-design/icons";
 import Loading from "components/common/Loading/Loading";
 import useUrlParams from "hooks/useUrlParams";
 const Product = () => {
@@ -54,6 +55,12 @@ const Product = () => {
             </SideBarToggle>
             <CategoriesContainer>
               <Title>Category</Title>
+              <CategoryWrapper onClick={() => handleFilter("")}>
+                <CategoryIconWarper>
+                  <RadarChartOutlined />
+                </CategoryIconWarper>
+                <CategoryName>All</CategoryName>
+              </CategoryWrapper>
               {categoryData?.map((item: IdataCategory, index: number) => (
                 <CategoryWrapper
                   key={index}

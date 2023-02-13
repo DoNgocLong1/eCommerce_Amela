@@ -95,6 +95,9 @@ export const AccountContainer = styled.div`
     .ant-form-item-label label {
       min-width: unset;
     }
+    .ant-form-item label {
+      font-size: 1em;
+    }
   }
   @media ${breakPoints.tablet} {
     .ant-input {

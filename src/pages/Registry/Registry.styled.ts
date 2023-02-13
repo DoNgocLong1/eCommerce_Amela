@@ -12,7 +12,7 @@ export const Container = styled.div`
   background-position: center;
   @media ${breakPoints.mobile} {
     padding: 0;
-    font-size: 5px;
+    font-size: 8px;
   }
 `;
 

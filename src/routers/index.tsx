@@ -11,7 +11,6 @@ import Product from "pages/Product/Product";
 import ProductDetail from "pages/ProductDetail/ProductDetail";
 import Cart from "pages/Cart/Cart";
 import Account from "pages/Account/Account";
-import Payment from "pages/Payment/Payment";
 const Routers = () => {
   const state = useSelector(selectAuth);
   console.log("auth state", state);
@@ -22,12 +21,16 @@ const Routers = () => {
   }; */
   const RejectedRoute = () => {
     const token = localStorage.getItem("token");
-    return token ? <Outlet /> : <Navigate to="/login" />;
+    return !token ? <Outlet /> : <Navigate to="/login" />;
   };
   const elements = useRoutes([
     {
       path: "/login",
-      element: <Login />,
+      element: (
+        <DefaultLayout>
+          <Login />
+        </DefaultLayout>
+      ),
     },
     {
       path: "/",
@@ -74,12 +77,12 @@ const Routers = () => {
       element: <Registry />,
     },
     {
-      path: "/payment",
+      path: "/cart",
       element: <RejectedRoute />,
       children: [
         {
-          path: "/payment",
-          element: <Payment />,
+          path: "/cart",
+          element: <Cart />,
         },
       ],
     },

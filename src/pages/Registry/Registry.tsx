@@ -74,11 +74,13 @@ const Registry = () => {
               { required: true, message: "Please input your username!" },
               { max: 200, message: "Please input less than 200 characters" },
             ]}
+            hasFeedback
           >
             <Input prefix={<UserOutlined />} placeholder="Username" />
           </Form.Item>
           <Form.Item
             name="password"
+            hasFeedback
             rules={[
               { required: true, message: "Please input your password!" },
               { max: 200, message: "Please input less than 200 characters" },
@@ -88,8 +90,22 @@ const Registry = () => {
           </Form.Item>
           <Form.Item
             name="retype_password"
+            dependencies={["password"]}
+            hasFeedback
             rules={[
               { required: true, message: "Please retype your password!" },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The two passwords that you entered do not match!"
+                    )
+                  );
+                },
+              }),
             ]}
           >
             <Input.Password

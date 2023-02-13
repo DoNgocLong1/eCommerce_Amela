@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Carousel } from "antd";
 import styled from "styled-components";
 import { slideShow } from "assets/images";
@@ -42,21 +42,25 @@ const NextSliderButton = styled(PrevSliderButton)`
   right: 10px;
   left: unset;
 `;
-const SlideShow: React.FC = () => (
-  <Container>
-    <Carousel autoplay>
-      {slideShow.map((item: string, index: number) => (
-        <div key={index}>
-          <img style={contentStyle} src={item} alt={"slide show"} />
-        </div>
-      ))}
-    </Carousel>
-    <PrevSliderButton>
-      <LeftOutlined style={{ fontSize: "3em" }} />
-    </PrevSliderButton>
-    <NextSliderButton>
-      <RightOutlined style={{ fontSize: "3em" }} />
-    </NextSliderButton>
-  </Container>
-);
+const SlideShow: React.FC = () => {
+  const carouselRef: any = useRef<HTMLDivElement>();
+  return (
+    <Container>
+      <Carousel autoplay ref={carouselRef}>
+        {slideShow.map((item: string, index: number) => (
+          <div key={index}>
+            <img style={contentStyle} src={item} alt={"slide show"} />
+          </div>
+        ))}
+      </Carousel>
+      <PrevSliderButton onClick={() => carouselRef.current.prev()}>
+        <LeftOutlined style={{ fontSize: "3em" }} />
+      </PrevSliderButton>
+      <NextSliderButton onClick={() => carouselRef.current.next()}>
+        <RightOutlined style={{ fontSize: "3em" }} />
+      </NextSliderButton>
+    </Container>
+  );
+};
+
 export default SlideShow;

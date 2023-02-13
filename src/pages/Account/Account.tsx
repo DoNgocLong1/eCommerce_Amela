@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   AccountContainer,
-  AvatarUser,
   Container,
   Feature,
   FeatureWrapper,
@@ -10,37 +9,18 @@ import {
   SidebarHeader,
   SidebarHeaderImg,
   SidebarInfoWrapper,
-  UploadAvatar,
   UserEmail,
   UserName,
 } from "./Account.styled";
-import { Button, DatePicker, Form, Input, message, Upload } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
-import type { UploadProps } from "antd";
+import { Button, DatePicker, Form, Input, Upload } from "antd";
 import { updateUserProfile } from "apiServices/userServices";
 import ChangePass from "./components/ChangePass/ChangePass";
+import { PlusOutlined } from "@ant-design/icons";
 const Account = () => {
   const [isProfileComponent, setIsProfileComponent] = useState<boolean>(true);
-  const props: UploadProps = {
-    name: "file",
-    action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-    headers: {
-      authorization: "authorization-text",
-    },
-    onChange(info) {
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === "done") {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === "error") {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-  };
   const onFinish = async (values: any) => {
-    console.log(values);
-    const date = `${values.date.$y}-${values.date.$M + 1}-${values.date.$D}`;
+    console.log(values.avatar);
+    const date = `${values.date?.$y}-${values.date?.$M + 1}-${values.date?.$D}`;
     const formData = {
       name: values.username,
       phone: values.phoneNumber,
@@ -83,7 +63,14 @@ const Account = () => {
           <ChangePass />
         ) : (
           <Form layout="horizontal" size="large" onFinish={onFinish}>
-            <Form.Item name="username" label="Username">
+            <Form.Item
+              name="username"
+              label="Username"
+              rules={[
+                { whitespace: true, message: "Please input your full name!" },
+                { max: 200, message: "Please input less than 200 characters" },
+              ]}
+            >
               <Input placeholder="Username" defaultValue={userData.name} />
             </Form.Item>
             <Form.Item name="email" label="Email">
@@ -94,23 +81,26 @@ const Account = () => {
               />
             </Form.Item>
             <Form.Item name="address" label="Address">
-              <Input placeholder="Address" />
+              <Input placeholder="Address" defaultValue={userData.address} />
             </Form.Item>
-            <Form.Item name="phoneNumber" label="PhoneNumber">
+            <Form.Item
+              name="phoneNumber"
+              label="PhoneNumber"
+              rules={[
+                { max: 10, message: "Phone number is less than 10 numbers" },
+              ]}
+            >
               <Input placeholder="Phone number" />
             </Form.Item>
             <Form.Item name="date" label="Date of birth">
-              <DatePicker />
+              <DatePicker defaultValue={userData.date_of_birth} />
             </Form.Item>
-            <Form.Item name="avatar" label="Avatar">
-              <UploadAvatar>
-                <AvatarUser src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG6a6KfKK66Jy1eCuDau7yp2rb5dIfGvl45g&usqp=CAU" />
-                <Upload {...props}>
-                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                </Upload>
-              </UploadAvatar>
+            <Form.Item label="Upload Avatar" name="avatar">
+              <Upload listType="picture-card">
+                <PlusOutlined />
+              </Upload>
             </Form.Item>
-            <Form.Item name="submit">
+            <Form.Item>
               <Button htmlType="submit">Button</Button>
             </Form.Item>
           </Form>
