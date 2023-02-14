@@ -21,7 +21,7 @@ const Routers = () => {
   }; */
   const RejectedRoute = () => {
     const token = localStorage.getItem("token");
-    return !token ? <Outlet /> : <Navigate to="/login" />;
+    return token ? <Outlet /> : <Navigate to="/login" />;
   };
   const elements = useRoutes([
     {
@@ -82,7 +82,11 @@ const Routers = () => {
       children: [
         {
           path: "/cart",
-          element: <Cart />,
+          element: (
+            <DefaultLayout>
+              <Cart />
+            </DefaultLayout>
+          ),
         },
       ],
     },
