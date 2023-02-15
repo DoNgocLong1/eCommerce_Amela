@@ -45,4 +45,7 @@ export const Container = styled.div`
     color: #000;
     font-weight: bold;
   }
+  .ant-select-selector {
+    display: none;
+  }
 `;
