@@ -1,6 +1,5 @@
 import images from "assets/images";
 import ListItem from "components/common/ListItem/ListItem";
-import Slideshow from "components/SlideShow";
 import React from "react";
 import {
   Banner,
@@ -32,6 +31,7 @@ import {
 import { IdataCategory } from "types/productType.type";
 import useCategory from "hooks/useCategory";
 import useProduct from "hooks/useProduct";
+import SlideShow from "components/slideShow";
 const Home = () => {
   const categoryData: IdataCategory[] = useCategory();
   const { popularProductData } = useProduct();
@@ -49,7 +49,7 @@ const Home = () => {
   };
   return (
     <Container>
-      <Slideshow />
+      <SlideShow />
       <BannerWrapper>
         <Banner>
           <Link to="/product">
